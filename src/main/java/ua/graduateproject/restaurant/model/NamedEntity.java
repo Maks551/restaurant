@@ -1,11 +1,21 @@
-package ua.graduateproject.restaurant.restaurant.model;
+package ua.graduateproject.restaurant.model;
 
 import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Setter
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@MappedSuperclass
 public abstract class NamedEntity extends BaseEntity {
+
+    @NotBlank
+    @Size(min = 2, max = 100)
+    @Column(name = "name", nullable = false)
     protected String name;
 
     public boolean isNew(){

@@ -1,4 +1,4 @@
-package ua.graduateproject.restaurant.restaurant.model;
+package ua.graduateproject.restaurant.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +11,8 @@ public class Restaurant extends NamedEntity {
     private String address;
     private Vote vote;
     private Menu menu;
+
+    //user_id_by_update
     private User user;
 
     public Restaurant(String address, Vote vote, Menu menu, User user) {

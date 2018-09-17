@@ -29,8 +29,8 @@
               p:password="${database.password}"/>
     </beans>
     <beans profile="datajpa">
-        <context:component-scan base-package="ua.graduateproject.**.repository.datajpa"/>
-        <jpa:repositories base-package="ua.graduateproject.**.repository.datajpa"/>
+        <context:component-scan base-package="ua.graduateproject.restaurant.repository.datajpa"/>
+        <jpa:repositories base-package="ua.graduateproject.restaurant.repository.datajpa"/>
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
               p:dataSource-ref="dataSource"
               p:packagesToScan="ru.javawebinar.**.model">

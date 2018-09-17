@@ -1,4 +1,4 @@
-package ua.graduateproject.restaurant.restaurant.model;
+package ua.graduateproject.restaurant.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,13 +6,11 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 public class Vote extends BaseEntity {
     private int restaurantId;
     private int userId;
-    private int votes;
     private LocalDateTime dateTime;
 
     public Vote(int restaurantId, int userId, int votes, LocalDateTime dateTime){
@@ -23,7 +21,6 @@ public class Vote extends BaseEntity {
         super(id);
         this.restaurantId = restaurantId;
         this.userId = userId;
-        this.votes = votes;
         this.dateTime = dateTime;
     }
 }

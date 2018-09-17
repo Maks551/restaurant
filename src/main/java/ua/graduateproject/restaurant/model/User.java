@@ -1,11 +1,10 @@
-package ua.graduateproject.restaurant.restaurant.model;
+package ua.graduateproject.restaurant.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.util.CollectionUtils;
-import ua.graduateproject.restaurant.restaurant.util.MealUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-import static ua.graduateproject.restaurant.restaurant.util.MealUtil.DEFAULT_CALORIES_PER_DAY;
+import static ua.graduateproject.restaurant.util.MealUtil.DEFAULT_CALORIES_PER_DAY;
 
 @Getter
 @Setter

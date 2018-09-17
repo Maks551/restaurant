@@ -1,9 +1,9 @@
-package ua.graduateproject.restaurant.restaurant.to;
+package ua.graduateproject.restaurant.to;
 
 import lombok.Getter;
 import lombok.ToString;
-import ua.graduateproject.restaurant.restaurant.model.Meal;
-import ua.graduateproject.restaurant.restaurant.model.Restaurant;
+import ua.graduateproject.restaurant.model.Meal;
+import ua.graduateproject.restaurant.model.Restaurant;
 
 import java.time.LocalDateTime;
 import java.util.Set;
