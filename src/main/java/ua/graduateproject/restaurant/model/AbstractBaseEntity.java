@@ -9,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class BaseEntity {
+public abstract class AbstractBaseEntity {
     public static final int START_SEQ = 100000;
 
     @Id
@@ -27,7 +27,7 @@ public abstract class BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BaseEntity that = (BaseEntity) o;
+        AbstractBaseEntity that = (AbstractBaseEntity) o;
 
         return id != null && id.equals(that.id);
     }

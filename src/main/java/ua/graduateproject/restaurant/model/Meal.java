@@ -15,11 +15,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "meals")
-public class Meal extends BaseEntity {
-
-    @Column(name = "date_time", nullable = false)
-    @NotNull
-    private LocalDateTime dateTime;
+public class Meal extends AbstractBaseEntity {
 
     @Column(name = "description", nullable = false)
     @NotBlank
@@ -35,21 +31,13 @@ public class Meal extends BaseEntity {
     @NotNull
     private Menu menu;
 
-    public Meal(LocalDateTime dateTime, String description, int calories){
-        this(null, dateTime, description, calories);
+    public Meal(String description, int calories){
+        this(null, description, calories);
     }
 
-    public Meal(Integer id, LocalDateTime dateTime, String description, int calories){
+    public Meal(Integer id, String description, int calories){
         super(id);
-        this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
-    }
-
-    public LocalDate getDate(){
-        return dateTime.toLocalDate();
-    }
-    public LocalTime getTime(){
-        return dateTime.toLocalTime();
     }
 }

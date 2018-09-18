@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface MealRepository {
 
-    Meal get(int id);
+    Meal get(int id, int menuId);
 
-    Meal save(Meal meal, int userId);
+    Meal save(Meal meal, int menuId);
 
     boolean delete(int id);
 

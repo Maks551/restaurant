@@ -21,7 +21,7 @@ import static ua.graduateproject.restaurant.util.MealUtil.DEFAULT_CALORIES_PER_D
 @ToString(exclude = {"password", "registered"})
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
-public class User extends NamedEntity {
+public class User extends AbstractNamedEntity {
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -44,22 +44,18 @@ public class User extends NamedEntity {
     @Column(name = "role")
     private Set<Role> roles;
 
-    @Column(name = "calories_per_day", columnDefinition = "int default 2000")
-    private int caloriesPerDay = DEFAULT_CALORIES_PER_DAY;
-
     public User(User user){
-        this(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getCaloriesPerDay(), user.isEnabled(), user.getRegistered(), user.getRoles());
+        this(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.isEnabled(), user.getRegistered(), user.getRoles());
     }
 
     public User(Integer id, String name, String email, String password, Role role, Role... roles){
-        this(id, name, email, password, DEFAULT_CALORIES_PER_DAY, true, new Date(), EnumSet.of(role, roles));
+        this(id, name, email, password, true, new Date(), EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String name, String email, String password, int caloriesPerDay, boolean enabled, Date registered, Collection<Role> roles){
+    public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Collection<Role> roles){
         super(id, name);
         this.email = email;
         this.password = password;
-        this.caloriesPerDay = caloriesPerDay;
         this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);

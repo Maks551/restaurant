@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public abstract class NamedEntity extends BaseEntity {
+public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
     @Size(min = 2, max = 100)
@@ -22,7 +22,7 @@ public abstract class NamedEntity extends BaseEntity {
         return this.name == null;
     }
 
-    protected NamedEntity(Integer id, String name){
+    protected AbstractNamedEntity(Integer id, String name){
         super(id);
         this.name = name;
     }

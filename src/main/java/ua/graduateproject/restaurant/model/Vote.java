@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 @NoArgsConstructor
-public class Vote extends BaseEntity {
+public class Vote extends AbstractBaseEntity {
     private int restaurantId;
     private int userId;
     private LocalDateTime dateTime;

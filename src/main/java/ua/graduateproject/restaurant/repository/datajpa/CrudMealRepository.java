@@ -6,4 +6,6 @@ import ua.graduateproject.restaurant.model.Meal;
 
 @Transactional(readOnly = true)
 public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
+
+    int delete(int id);
 }

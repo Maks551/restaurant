@@ -16,6 +16,11 @@ public class DataJpaUserRepository implements UserRepository {
     }
 
     @Override
+    public User getByEmail(String email) {
+        return null;
+    }
+
+    @Override
     public User save(int id) {
         return null;
     }

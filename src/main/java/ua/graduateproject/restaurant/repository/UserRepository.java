@@ -6,6 +6,8 @@ public interface UserRepository {
 
     User get(int id);
 
+    User getByEmail(String email);
+
     User getAll();
 
     User save(int id);

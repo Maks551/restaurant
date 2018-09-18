@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Restaurant extends NamedEntity {
+public class Restaurant extends AbstractNamedEntity {
     private String address;
     private Vote vote;
     private Menu menu;

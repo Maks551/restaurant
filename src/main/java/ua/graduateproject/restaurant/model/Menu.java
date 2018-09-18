@@ -18,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "menu")
-public class Menu extends NamedEntity {
+public class Menu extends AbstractBaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "meals")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @OrderBy("dateTime DESC")
@@ -38,8 +38,8 @@ public class Menu extends NamedEntity {
         this.restaurant = restaurant;
     }
 
-    public Menu(Integer id, String name, Set<Meal> meals, LocalDateTime dateTime, Restaurant restaurant) {
-        super(id, name);
+    public Menu(Integer id, Set<Meal> meals, LocalDateTime dateTime, Restaurant restaurant) {
+        super(id);
         this.meals = meals;
         this.dateTime = dateTime;
         this.restaurant = restaurant;
