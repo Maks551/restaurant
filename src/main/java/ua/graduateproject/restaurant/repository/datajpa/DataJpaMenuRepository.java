@@ -17,20 +17,17 @@ public class DataJpaMenuRepository implements MenuRepository {
     }
 
     @Override
-    public Menu save(Menu menu, int restaurantId, int userId) {
-        if (!menu.isNew() && get(restaurantId, userId) == null) {
-            return null;
-        }
+    public Menu save(Menu menu, int restaurantId) {
         return null;
     }
 
     @Override
-    public boolean delete(int id, int userId) {
+    public boolean delete(int id, int restaurantId) {
         return false;
     }
 
     @Override
-    public List<Menu> getAllByUser(int userId) {
+    public List<Menu> getAll(int restaurantId) {
         return null;
     }
 }

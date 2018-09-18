@@ -15,8 +15,7 @@ import java.util.*;
 
 import static ua.graduateproject.restaurant.util.MealUtil.DEFAULT_CALORIES_PER_DAY;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @ToString(exclude = {"password", "registered"})
 @Entity
@@ -41,8 +40,13 @@ public class User extends AbstractNamedEntity {
     private Date registered = new Date();
 
     @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Restaurant> restaurants;
 
     public User(User user){
         this(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.isEnabled(), user.getRegistered(), user.getRoles());

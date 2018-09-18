@@ -3,6 +3,7 @@ package ua.graduateproject.restaurant.model;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import ua.graduateproject.restaurant.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -26,9 +27,9 @@ public class Meal extends AbstractBaseEntity {
     private int calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
+    @NotNull(groups = View.Persist.class)
     private Menu menu;
 
     public Meal(String description, int calories){

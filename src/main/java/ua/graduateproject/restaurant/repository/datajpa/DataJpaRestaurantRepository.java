@@ -8,7 +8,17 @@ import java.util.List;
 public class DataJpaRestaurantRepository implements RestaurantRepository {
 
     @Override
-    public Restaurant get(int restaurantId, int userId) {
+    public Restaurant get(int restaurantId) {
+        return null;
+    }
+
+    @Override
+    public Restaurant getByUser(int restaurantId, int userId) {
+        return null;
+    }
+
+    @Override
+    public Restaurant getByAddress(String address) {
         return null;
     }
 
@@ -28,7 +38,12 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
-    public List<Restaurant> getAll(int userId) {
+    public List<Restaurant> getAll() {
+        return null;
+    }
+
+    @Override
+    public List<Restaurant> getAllByUser(int userId) {
         return null;
     }
 

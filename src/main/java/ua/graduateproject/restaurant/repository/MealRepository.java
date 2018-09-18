@@ -10,7 +10,7 @@ public interface MealRepository {
 
     Meal save(Meal meal, int menuId);
 
-    boolean delete(int id);
+    boolean delete(int id, int menuId);
 
-    List<Meal> getAll();
+    List<Meal> getAll(int menuId);
 }

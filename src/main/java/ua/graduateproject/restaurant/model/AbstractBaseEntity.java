@@ -1,6 +1,7 @@
 package ua.graduateproject.restaurant.model;
 
 import lombok.*;
+import ua.graduateproject.restaurant.HasId;
 
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity {
+public abstract class AbstractBaseEntity implements HasId {
     public static final int START_SEQ = 100000;
 
     @Id
@@ -17,10 +18,6 @@ public abstract class AbstractBaseEntity {
     //    @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     protected Integer id;
-
-    public boolean isNew(){
-        return this.id == null;
-    }
 
     @Override
     public boolean equals(Object o) {

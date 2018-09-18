@@ -7,8 +7,7 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Setter
-@Getter
+@Setter @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {

@@ -5,19 +5,13 @@ DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS restaurants;
 
-DROP SEQUENCE IF EXISTS global_seq_user;
-DROP SEQUENCE IF EXISTS global_seq_menu;
-DROP SEQUENCE IF EXISTS global_seq_restaurant;
-DROP SEQUENCE IF EXISTS global_seq_vote;
+DROP SEQUENCE IF EXISTS global_seq;
 
-CREATE SEQUENCE global_seq_user START 100000;
-CREATE SEQUENCE global_seq_menu START 100000;
-CREATE SEQUENCE global_seq_restaurant START 100000;
-CREATE SEQUENCE global_seq_vote START 100000;
+CREATE SEQUENCE global_seq START 100000;
 
 CREATE TABLE users
 (
-  id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq_user'),
+  id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name             VARCHAR                 NOT NULL,
   email            VARCHAR                 NOT NULL,
   password         VARCHAR                 NOT NULL,
@@ -36,18 +30,19 @@ CREATE TABLE user_roles
 
 CREATE TABLE restaurants
 (
-  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq_restaurant'),
+  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name              VARCHAR                 NOT NULL,
+  open_time         TIME                    NOT NULL,
+  close_time        TIME                    NOT NULL,
   address           VARCHAR                 NOT NULL,
   menu_id           INTEGER                 NOT NULL,
-  vote_id           INTEGER                 NOT NULL,
   user_id           INTEGER                 NOT NULL
 );
 CREATE UNIQUE INDEX restaurant_unique_address_idx ON restaurants (address);
 
 CREATE TABLE menu
 (
-  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq_menu'),
+  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   date_time         TIMESTAMP DEFAULT now() NOT NULL,
   restaurant_id     INTEGER                 NOT NULL,
   CONSTRAINT menu_restaurant_idx UNIQUE (restaurant_id, id),
@@ -58,7 +53,7 @@ CREATE UNIQUE INDEX unique_menu_datetime_idx
 
 CREATE TABLE meals
 (
-  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq_menu'),
+  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   menu_id           INTEGER                 NOT NULL,
   description       VARCHAR                 NOT NULL,
   calories          INTEGER                 NOT NULL,
@@ -68,7 +63,7 @@ CREATE TABLE meals
 
 CREATE TABLE votes
 (
-  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq_menu'),
+  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   user_id           INTEGER                 NOT NULL,
   restaurant_id     INTEGER                 NOT NULL,
   date_time         TIMESTAMP               NOT NULL,

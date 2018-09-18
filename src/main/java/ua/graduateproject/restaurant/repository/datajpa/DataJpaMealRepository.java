@@ -2,6 +2,7 @@ package ua.graduateproject.restaurant.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ua.graduateproject.restaurant.model.Meal;
 import ua.graduateproject.restaurant.repository.MealRepository;
 
@@ -11,28 +12,33 @@ import java.util.List;
 public class DataJpaMealRepository implements MealRepository {
 
     @Autowired
-    private CrudMealRepository repository;
+    private CrudMealRepository crudMealRepo;
+
+    @Autowired
+    private CrudMenuRepository crudMenuRepo;
 
     @Override
-    public Meal save(Meal meal, int id) {
-        if (!meal.isNew()) {
-
+    @Transactional
+    public Meal save(Meal meal, int menuId) {
+        if (!meal.isNew() && get(meal.getId(), menuId) == null) {
+            return null;
         }
-        return null;
+        meal.setMenu(crudMenuRepo.getOne(menuId));
+        return crudMealRepo.save(meal);
     }
 
     @Override
-    public boolean delete(int id) {
-        return repository.delete(id) != 0;
+    public boolean delete(int id, int menuId) {
+        return crudMealRepo.delete(id, menuId) != 0;
+    }
+
+    @Override
+    public List<Meal> getAll(int menuId) {
+        return crudMealRepo.getAll(menuId);
     }
 
     @Override
     public Meal get(int id, int menuId) {
-        return null;
-    }
-
-    @Override
-    public List<Meal> getAll() {
-        return repository.findAll();
+        return crudMealRepo.findById(id).filter(meal -> meal.getMenu().getId() == menuId).orElse(null);
     }
 }

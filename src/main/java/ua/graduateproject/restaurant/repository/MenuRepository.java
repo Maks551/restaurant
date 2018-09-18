@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface MenuRepository {
 
-    Menu get(int restaurantId, int userId);
+    Menu get(int id, int restaurantId);
 
-    Menu save(Menu menu, int restaurantId, int userId);
+    Menu save(Menu menu, int restaurantId);
 
-    boolean delete(int id, int userId);
+    boolean delete(int id, int restaurantId);
 
-    List<Menu> getAllByUser(int userId);
+    List<Menu> getAll(int restaurantId);
 }
