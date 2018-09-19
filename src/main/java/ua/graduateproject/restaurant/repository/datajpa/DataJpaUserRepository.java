@@ -39,4 +39,9 @@ public class DataJpaUserRepository implements UserRepository {
     public boolean delete(int id) {
         return crudUserRepo.delete(id) != 0;
     }
+
+    @Override
+    public User getWithRestaurant(int id) {
+        return crudUserRepo.getWithRestaurant(id);
+    }
 }

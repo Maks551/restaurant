@@ -14,8 +14,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-import static ua.graduateproject.restaurant.util.MealUtil.DEFAULT_CALORIES_PER_DAY;
-
 @Getter @Setter
 @NoArgsConstructor
 @ToString(exclude = {"password", "registered"})

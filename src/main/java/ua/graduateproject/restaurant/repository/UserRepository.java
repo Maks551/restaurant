@@ -15,4 +15,6 @@ public interface UserRepository {
     User save(User user);
 
     boolean delete(int id);
+
+    User getWithRestaurant(int id);
 }

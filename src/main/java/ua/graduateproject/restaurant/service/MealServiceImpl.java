@@ -12,7 +12,7 @@ import java.util.List;
 
 import static ua.graduateproject.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
-@Service
+@Service("mealService")
 public class MealServiceImpl implements MealService {
 
     private final MealRepository repository;
@@ -23,28 +23,28 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public Meal get(int id, int menuId) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id, menuId), id);
+    public Meal get(int id, int restaurantId) throws NotFoundException {
+        return checkNotFoundWithId(repository.get(id, restaurantId), id);
     }
 
     @Override
-    public void delete(int id, int menuId) throws NotFoundException {
-        checkNotFoundWithId(repository.delete(id, menuId), id);
+    public void delete(int id, int restaurantId) throws NotFoundException {
+        checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
     @Override
-    public List<Meal> getAll(int menuId) {
-        return repository.getAll(menuId);
+    public List<Meal> getAll(int restaurantId) {
+        return repository.getAll(restaurantId);
     }
 
     @Override
-    public void update(Meal meal, int menuId) throws NotFoundException {
-        checkNotFoundWithId(repository.save(meal, menuId), menuId);
+    public void update(Meal meal, int restaurantId) throws NotFoundException {
+        checkNotFoundWithId(repository.save(meal, restaurantId), meal.getId());
     }
 
     @Override
-    public Meal create(Meal meal, int menuId) {
+    public Meal create(Meal meal, int restaurantId) {
         Assert.notNull(meal, "meal must not be null");
-        return repository.save(meal, menuId);
+        return repository.save(meal, restaurantId);
     }
 }
