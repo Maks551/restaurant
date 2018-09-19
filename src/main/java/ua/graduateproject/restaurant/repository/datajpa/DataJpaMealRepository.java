@@ -15,7 +15,7 @@ public class DataJpaMealRepository implements MealRepository {
     private CrudMealRepository crudMealRepo;
 
     @Autowired
-    private CrudMenuRepository crudMenuRepo;
+    private CrudRestaurantRepository crudRestaurantRepo;
 
     @Override
     @Transactional
@@ -23,7 +23,7 @@ public class DataJpaMealRepository implements MealRepository {
         if (!meal.isNew() && get(meal.getId(), menuId) == null) {
             return null;
         }
-        meal.setMenu(crudMenuRepo.getOne(menuId));
+        meal.setRestaurant(crudRestaurantRepo.getOne(menuId));
         return crudMealRepo.save(meal);
     }
 
@@ -39,6 +39,6 @@ public class DataJpaMealRepository implements MealRepository {
 
     @Override
     public Meal get(int id, int menuId) {
-        return crudMealRepo.findById(id).filter(meal -> meal.getMenu().getId() == menuId).orElse(null);
+        return crudMealRepo.findById(id).filter(meal -> meal.getRestaurant().getId() == menuId).orElse(null);
     }
 }

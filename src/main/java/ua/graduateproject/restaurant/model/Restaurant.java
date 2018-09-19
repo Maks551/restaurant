@@ -11,8 +11,11 @@ import ua.graduateproject.restaurant.View;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
+import static ua.graduateproject.restaurant.util.DateTimeUtil.DATE_TIME_PATTERN;
 import static ua.graduateproject.restaurant.util.DateTimeUtil.TIME_PATTERN;
 
 @Setter @Getter
@@ -25,19 +28,13 @@ public class Restaurant extends AbstractNamedEntity {
     @NotBlank
     private String address;
 
-    @Column(name = "open_time", nullable = false)
+    @Column(name = "date_of_add_menu", nullable = false)
     @NotNull
-    @DateTimeFormat(pattern = TIME_PATTERN)
-    private LocalTime openTime;
+    @DateTimeFormat(pattern = DATE_TIME_PATTERN)
+    private LocalDateTime dateTimeOfAddMenu;
 
-    @Column(name = "close_time", nullable = false)
-    @NotNull
-    @DateTimeFormat(pattern = TIME_PATTERN)
-    private LocalTime closeTime;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    private List<Meal> menu;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -45,16 +42,14 @@ public class Restaurant extends AbstractNamedEntity {
     @NotNull(groups = View.Persist.class)
     private User user;
 
-    public Restaurant(String address, Menu menu, User user) {
+    public Restaurant(String address, LocalDateTime dateTimeOfAddMenu) {
         this.address = address;
-        this.menu = menu;
-        this.user = user;
+        this.dateTimeOfAddMenu = dateTimeOfAddMenu;
     }
 
-    public Restaurant(Integer id, String name, String address, Menu menu, User user) {
+    public Restaurant(Integer id, String name, LocalDateTime dateTimeOfAddMenu, String address) {
         super(id, name);
         this.address = address;
-        this.menu = menu;
-        this.user = user;
+        this.dateTimeOfAddMenu = dateTimeOfAddMenu;
     }
 }

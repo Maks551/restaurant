@@ -2,17 +2,17 @@ package ua.graduateproject.restaurant.repository;
 
 import ua.graduateproject.restaurant.model.User;
 
+import java.util.List;
+
 public interface UserRepository {
 
     User get(int id);
 
     User getByEmail(String email);
 
-    User getAll();
+    List<User> getAll();
 
-    User save(int id);
-
-    User update(int id);
+    User save(User user);
 
     boolean delete(int id);
 }
