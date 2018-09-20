@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface RestaurantRepository {
 
+    Restaurant get(int id);
+
     Restaurant get(int id, int userId);
 
     Restaurant getByAddress(String address);

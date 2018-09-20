@@ -2,11 +2,14 @@ package ua.graduateproject.restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ua.graduateproject.restaurant.model.Restaurant;
 import ua.graduateproject.restaurant.repository.RestaurantRepository;
 import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
+
+import static ua.graduateproject.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("restaurantService")
 public class RestaurantServiceImpl implements RestaurantService {
@@ -19,37 +22,39 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant create(Restaurant restaurant) {
-        return null;
+    public Restaurant create(Restaurant restaurant, int userId) {
+        Assert.notNull(restaurant, "restaurant must not be null");
+        return repository.save(restaurant, userId);
     }
 
     @Override
-    public Restaurant update(Restaurant restaurant) {
-        return null;
+    public void update(Restaurant restaurant, int userId) {
+        checkNotFoundWithId(repository.save(restaurant, userId), restaurant.getId());
     }
 
     @Override
-    public void delete(int id) throws NotFoundException {
-
+    public void delete(int id, int userId) {
+        checkNotFoundWithId(repository.delete(id, userId), id);
     }
 
     @Override
-    public Restaurant get(int id) throws NotFoundException {
-        return null;
+    public Restaurant get(int id) {
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public Restaurant getByAddress(String address) {
-        return null;
+        Assert.notNull(address, "address must not be null");
+        return repository.getByAddress(address);
     }
 
     @Override
     public Restaurant getWithMenu(int id) {
-        return null;
+        return checkNotFoundWithId(repository.getWithMenu(id), id);
     }
 
     @Override
     public List<Restaurant> getAll() {
-        return null;
+        return repository.getAll();
     }
 }

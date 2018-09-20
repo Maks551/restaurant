@@ -26,11 +26,6 @@ public class DataJpaVoteRepository implements VoteRepository {
     }
 
     @Override
-    public Vote getByRestaurant(int id, int restaurantId) {
-        return crudVoteRepo.getByRestaurant(id, restaurantId);
-    }
-
-    @Override
     public List<Vote> getAllByRestaurant(int restaurantId) {
         return crudVoteRepo.getAllByRestaurant(restaurantId);
     }
@@ -41,7 +36,7 @@ public class DataJpaVoteRepository implements VoteRepository {
     }
 
     @Override
-    public Vote save(Vote vote, int restaurantId, int userId) {
+    public Vote save(Vote vote) {
         if (!vote.isNew() || vote.getDateTime().toLocalTime().isAfter(LocalTime.of(11, 0))){
             return null;
         }
@@ -49,7 +44,7 @@ public class DataJpaVoteRepository implements VoteRepository {
     }
 
     @Override
-    public boolean delete(int id, int restaurantId, int userId) {
-        return crudVoteRepo.delete(id, restaurantId, userId) != 0;
+    public boolean delete(int id) {
+        return crudVoteRepo.delete(id) != 0;
     }
 }

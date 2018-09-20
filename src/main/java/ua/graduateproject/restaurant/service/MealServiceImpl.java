@@ -23,12 +23,12 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public Meal get(int id, int restaurantId) throws NotFoundException {
+    public Meal get(int id, int restaurantId) {
         return checkNotFoundWithId(repository.get(id, restaurantId), id);
     }
 
     @Override
-    public void delete(int id, int restaurantId) throws NotFoundException {
+    public void delete(int id, int restaurantId) {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
@@ -38,7 +38,7 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public void update(Meal meal, int restaurantId) throws NotFoundException {
+    public void update(Meal meal, int restaurantId) {
         checkNotFoundWithId(repository.save(meal, restaurantId), meal.getId());
     }
 

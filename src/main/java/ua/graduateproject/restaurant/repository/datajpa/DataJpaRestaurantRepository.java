@@ -19,6 +19,11 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
     private CrudUserRepository crudUserRepo;
 
     @Override
+    public Restaurant get(int id) {
+        return crudRestaurantRepo.getOne(id);
+    }
+
+    @Override
     public Restaurant get(int id, int userId) {
         return crudRestaurantRepo.get(id, userId);
     }

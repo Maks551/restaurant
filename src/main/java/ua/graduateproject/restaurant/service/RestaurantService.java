@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface RestaurantService {
 
-    Restaurant create(Restaurant restaurant);
+    Restaurant create(Restaurant restaurant, int userId);
 
-    Restaurant update(Restaurant restaurant);
+    void update(Restaurant restaurant, int userId) throws NotFoundException;
 
-    void delete(int id) throws NotFoundException;
+    void delete(int id, int userId) throws NotFoundException;
 
     Restaurant get(int id) throws NotFoundException;
 
-    Restaurant getByAddress(String address);
+    Restaurant getByAddress(String address) throws NotFoundException;
 
     Restaurant getWithMenu(int id);
 
