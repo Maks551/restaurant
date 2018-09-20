@@ -19,26 +19,31 @@ public class DataJpaMealRepository implements MealRepository {
 
     @Override
     @Transactional
-    public Meal save(Meal meal, int menuId) {
-        if (!meal.isNew() && get(meal.getId(), menuId) == null) {
+    public Meal save(Meal meal, int restaurantId) {
+        if (!meal.isNew() && get(meal.getId(), restaurantId) == null) {
             return null;
         }
-        meal.setRestaurant(crudRestaurantRepo.getOne(menuId));
+        meal.setRestaurant(crudRestaurantRepo.getOne(restaurantId));
         return crudMealRepo.save(meal);
     }
 
     @Override
-    public boolean delete(int id, int menuId) {
-        return crudMealRepo.delete(id, menuId) != 0;
+    public boolean delete(int id, int restaurantId) {
+        return crudMealRepo.delete(id, restaurantId) != 0;
     }
 
     @Override
-    public List<Meal> getAll(int menuId) {
-        return crudMealRepo.getAll(menuId);
+    public List<Meal> getAll(int restaurantId) {
+        return crudMealRepo.getAll(restaurantId);
     }
 
     @Override
-    public Meal get(int id, int menuId) {
-        return crudMealRepo.findById(id).filter(meal -> meal.getRestaurant().getId() == menuId).orElse(null);
+    public Meal get(int id, int restaurantId) {
+        return crudMealRepo.findById(id).filter(meal -> meal.getRestaurant().getId() == restaurantId).orElse(null);
+    }
+
+    @Override
+    public Meal getWithRestaurant(int id, int restaurantId) {
+        return crudMealRepo.getWithRestaurant(id, restaurantId);
     }
 }

@@ -28,6 +28,11 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
+    public Meal getWithRestaurant(int id, int restaurantId) {
+        return checkNotFoundWithId(repository.getWithRestaurant(id, restaurantId), id);
+    }
+
+    @Override
     public void delete(int id, int restaurantId) {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }

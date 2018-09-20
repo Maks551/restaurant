@@ -15,6 +15,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface CrudUserRepository extends JpaRepository<User, Integer> {
 
+    @Modifying
     @Transactional
     @Query("DELETE FROM User u WHERE u.id=:id")
     int delete(@Param("id") int id);

@@ -21,7 +21,8 @@ import static ua.graduateproject.restaurant.util.DateTimeUtil.TIME_PATTERN;
 @Setter @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "restaurants")
+@Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = "address", name = "restaurant_unique_address_idx"),
+                                    @UniqueConstraint(columnNames = "date_of_add_menu", name = "restaurant_unique_menu_date_idx")})
 public class Restaurant extends AbstractNamedEntity {
 
     @Column(name = "address", nullable = false)
@@ -42,14 +43,19 @@ public class Restaurant extends AbstractNamedEntity {
     @NotNull(groups = View.Persist.class)
     private User user;
 
-    public Restaurant(String address, LocalDateTime dateTimeOfAddMenu) {
-        this.address = address;
-        this.dateTimeOfAddMenu = dateTimeOfAddMenu;
-    }
-
     public Restaurant(Integer id, String name, LocalDateTime dateTimeOfAddMenu, String address) {
         super(id, name);
         this.address = address;
         this.dateTimeOfAddMenu = dateTimeOfAddMenu;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", dateTimeOfAddMenu=" + dateTimeOfAddMenu +
+                '}';
     }
 }

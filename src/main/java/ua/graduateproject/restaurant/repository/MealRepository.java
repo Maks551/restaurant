@@ -13,4 +13,6 @@ public interface MealRepository {
     boolean delete(int id, int restaurantId);
 
     List<Meal> getAll(int restaurantId);
+
+    Meal getWithRestaurant(int id, int restaurantId);
 }

@@ -42,4 +42,14 @@ public class Vote extends AbstractBaseEntity {
         this.userId = userId;
         this.dateTime = dateTime;
     }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                ", restaurantId=" + restaurantId +
+                ", userId=" + userId +
+                ", dateTime=" + dateTime +
+                '}';
+    }
 }

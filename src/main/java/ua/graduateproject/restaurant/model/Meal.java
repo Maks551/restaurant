@@ -23,7 +23,7 @@ public class Meal extends AbstractBaseEntity {
     private String description;
 
     @Column(name = "calories", nullable = false)
-    @NotBlank
+    @NotNull
     private int calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,5 +40,14 @@ public class Meal extends AbstractBaseEntity {
         super(id);
         this.description = description;
         this.calories = calories;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", calories=" + calories +
+                '}';
     }
 }

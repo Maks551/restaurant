@@ -16,4 +16,6 @@ public interface MealService {
     void update(Meal meal, int restaurantId) throws NotFoundException;
 
     Meal create(Meal meal, int restaurantId);
+
+    Meal getWithRestaurant(int id, int restaurantId);
 }
