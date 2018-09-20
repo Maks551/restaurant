@@ -3,8 +3,12 @@ package ua.graduateproject.restaurant.repository.datajpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ua.graduateproject.restaurant.model.Restaurant;
+import ua.graduateproject.restaurant.model.Role;
+import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.repository.RestaurantRepository;
+import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -20,12 +24,12 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
 
     @Override
     public Restaurant get(int id) {
-        return crudRestaurantRepo.getOne(id);
+        return crudRestaurantRepo.findById(id).orElse(null);
     }
 
     @Override
-    public Restaurant get(int id, int userId) {
-        return crudRestaurantRepo.get(id, userId);
+    public Restaurant getByUser(int id, int userId) {
+        return crudRestaurantRepo.getByUser(id, userId);
     }
 
     @Override
@@ -34,11 +38,16 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
+    @Transactional
     public Restaurant save(Restaurant restaurant, int userId) {
-        if (!restaurant.isNew() && get(restaurant.getId(), userId) == null) {
+        User user = crudUserRepo.findById(userId).orElse(null);
+        if (user == null || !user.getRoles().contains(Role.ROLE_ADMIN)) {
+            throw new NotFoundException("user mast be admin");
+        }
+        if (restaurant.getId() != null && restaurant.getUser() != null && restaurant.getUser().getId() != userId){
             return null;
         }
-        restaurant.setUser(crudUserRepo.getOne(userId));
+        restaurant.setUser(user);
         return crudRestaurantRepo.save(restaurant);
     }
 
@@ -58,7 +67,7 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
-    public Restaurant getWithUser(int id, int userId) {
-        return crudRestaurantRepo.getWithUser(id, userId);
+    public Restaurant getWithUser(int id) {
+        return crudRestaurantRepo.getWithUser(id);
     }
 }

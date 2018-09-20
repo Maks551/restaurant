@@ -1,6 +1,7 @@
 package ua.graduateproject.restaurant.repository;
 
 import ua.graduateproject.restaurant.model.Restaurant;
+import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface RestaurantRepository {
 
     Restaurant get(int id);
 
-    Restaurant get(int id, int userId);
+    Restaurant getByUser(int id, int userId);
 
     Restaurant getByAddress(String address);
 
@@ -20,5 +21,5 @@ public interface RestaurantRepository {
 
     Restaurant getWithMenu(int id);
 
-    Restaurant getWithUser(int id, int userId);
+    Restaurant getWithUser(int id);
 }

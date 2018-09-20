@@ -43,6 +43,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Restaurant getByUser(int id, int userId) throws NotFoundException {
+        return checkNotFoundWithId(repository.getByUser(id, userId), id);
+    }
+
+    @Override
     public Restaurant getByAddress(String address) {
         Assert.notNull(address, "address must not be null");
         return repository.getByAddress(address);
@@ -51,6 +56,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant getWithMenu(int id) {
         return checkNotFoundWithId(repository.getWithMenu(id), id);
+    }
+
+    @Override
+    public Restaurant getWithUser(int id) {
+        return checkNotFoundWithId(repository.getWithUser(id), id);
     }
 
     @Override

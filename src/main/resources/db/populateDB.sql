@@ -11,10 +11,10 @@ INSERT INTO users (name, email, password) VALUES
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 100000),
   ('ROLE_USER', 100001),
-  ('ROLE_ADMIN', 100002),
   ('ROLE_USER', 100002),
-  ('ROLE_ADMIN', 100003),
-  ('ROLE_USER', 100003);
+  ('ROLE_ADMIN', 100002),
+  ('ROLE_USER', 100003),
+  ('ROLE_ADMIN', 100003);
 
 INSERT INTO restaurants (name, address, date_of_add_menu, user_id) VALUES
   ('Ресторан 1', 'м. Київ вул. 1', '2018-09-20 10:10:00', 100002),

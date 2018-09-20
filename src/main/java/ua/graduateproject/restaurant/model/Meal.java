@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @Setter @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "meals")
+@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames =  "restaurant_id",name = "meal_restaurant_idx")})
 public class Meal extends AbstractBaseEntity {
 
     @Column(name = "description", nullable = false)
