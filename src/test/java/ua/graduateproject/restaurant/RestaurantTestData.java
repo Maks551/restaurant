@@ -19,7 +19,7 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT1_ID, "Ресторан 1",
             LocalDateTime.of(2018, 9, 20, 10, 10), "м. Київ вул. 1", ADMIN_1);
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT2_ID, "Ресторан 2",
-            LocalDateTime.of(2018, 9, 20, 9, 0), "м. Київ вул. 2", ADMIN_2);
+            LocalDateTime.of(2018, 9, 20, 9, 0), "м. Київ вул. 2", ADMIN_1);
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT3_ID, "Ресторан 3",
             LocalDateTime.of(2018, 9, 20, 9, 30), "м. Київ вул. 3", ADMIN_2);
 
