@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ua.graduateproject.restaurant.model.Vote;
 import ua.graduateproject.restaurant.repository.VoteRepository;
+import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -36,9 +37,19 @@ public class DataJpaVoteRepository implements VoteRepository {
     }
 
     @Override
+    public int getAllPositiveCountByRestaurant(int restaurantId) {
+        return crudVoteRepo.getAllPositiveCountByRestaurant(restaurantId);
+    }
+
+    @Override
     public Vote save(Vote vote) {
-        if (!vote.isNew() || vote.getDateTime().toLocalTime().isAfter(LocalTime.of(11, 0))){
+        if (!vote.isNew() && vote.getDateTime().toLocalTime().isAfter(LocalTime.of(11, 0))){
             return null;
+        }
+        if (vote.getVote() > 0) {
+            vote.setVote(1);
+        } else {
+            vote.setVote(-1);
         }
         return crudVoteRepo.save(vote);
     }

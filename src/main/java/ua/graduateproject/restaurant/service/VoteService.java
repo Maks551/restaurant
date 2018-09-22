@@ -20,4 +20,6 @@ public interface VoteService {
     List<Vote> getAll(int restaurantId);
 
     int getAllCountByRestaurant(int restaurantId);
+
+    int getAllPositiveCountByRestaurant(int restaurantId);
 }

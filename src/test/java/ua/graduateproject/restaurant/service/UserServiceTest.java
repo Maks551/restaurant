@@ -25,7 +25,7 @@ class UserServiceTest extends AbstractServiceTest {
         User user = getCreatedUser();
         User created = service.create(user);
         user.setId(created.getId());
-        assertMatch(service.getAll(), ADMIN_1, ADMIN_2, user, USER_1, USER_2);
+        assertMatch(service.getAll(), ADMIN_1, ADMIN_2, user, USER_1, USER_2, USER_3, USER_4);
     }
 
     @Test
@@ -37,7 +37,7 @@ class UserServiceTest extends AbstractServiceTest {
     @Test
     void delete() {
         service.delete(USER_ID);
-        assertMatch(service.getAll(), ADMIN_1, ADMIN_2, USER_2);
+        assertMatch(service.getAll(), ADMIN_1, ADMIN_2, USER_2, USER_3, USER_4);
     }
 
     @Test

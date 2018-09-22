@@ -15,6 +15,8 @@ public interface VoteRepository {
 
     int getAllCountByRestaurant(int restaurantId);
 
+    int getAllPositiveCountByRestaurant(int restaurantId);
+
     Vote save(Vote vote);
 
     boolean delete(int id);

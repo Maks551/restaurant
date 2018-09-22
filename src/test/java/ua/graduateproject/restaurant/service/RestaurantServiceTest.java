@@ -55,23 +55,23 @@ class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     void delete() {
-        service.delete(RESTAURANT1_ID, ADMIN_ID);
+        service.delete(RESTAURANT_ID, ADMIN_ID);
         assertMatch(service.getAll(), RESTAURANT_2, RESTAURANT_3);
     }
 
     @Test
     void deleteNotFound() {
-        assertThrows(NotFoundException.class, () -> service.delete(RESTAURANT1_ID, ADMIN2_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(RESTAURANT_ID, ADMIN2_ID));
     }
 
     @Test
     void get() {
-        assertMatch(service.get(RESTAURANT1_ID), RESTAURANT_1);
+        assertMatch(service.get(RESTAURANT_ID), RESTAURANT_1);
     }
 
     @Test
     void getByUser() {
-        Restaurant actual = service.getByUser(RESTAURANT1_ID, ADMIN_ID);
+        Restaurant actual = service.getByUser(RESTAURANT_ID, ADMIN_ID);
         assertMatch(actual, RESTAURANT_1);
     }
 
@@ -88,7 +88,7 @@ class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     void getWithMenu() {
-        Restaurant actual = service.getWithMenu(RESTAURANT1_ID);
+        Restaurant actual = service.getWithMenu(RESTAURANT_ID);
         assertMatch(actual, RESTAURANT_1);
         MealTestData.assertMatch(actual.getMenu(), MealTestData.RESTAURANT1_MEALS);
     }
@@ -100,7 +100,7 @@ class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     void getWithUser() {
-        Restaurant actual = service.getWithUser(RESTAURANT1_ID);
+        Restaurant actual = service.getWithUser(RESTAURANT_ID);
         assertMatch(actual, RESTAURANT_1);
         UserTestData.assertMatch(actual.getUser(), ADMIN_1);
     }

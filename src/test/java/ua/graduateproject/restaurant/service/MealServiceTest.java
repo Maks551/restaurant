@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ua.graduateproject.restaurant.MealTestData.*;
 import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT_1;
-import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT1_ID;
+import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT_ID;
 import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT2_ID;
 
 class MealServiceTest extends AbstractServiceTest {
@@ -21,8 +21,8 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void delete(){
-        service.delete(RESTAURANT1_MEAL_ID, RESTAURANT1_ID);
-        assertMatch(service.getAll(RESTAURANT1_ID), RESTAURANT1_MEAL2, RESTAURANT1_MEAL3, RESTAURANT1_MEAL4);
+        service.delete(RESTAURANT1_MEAL_ID, RESTAURANT_ID);
+        assertMatch(service.getAll(RESTAURANT_ID), RESTAURANT1_MEAL2, RESTAURANT1_MEAL3, RESTAURANT1_MEAL4);
     }
 
     @Test
@@ -33,13 +33,13 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void get(){
-        Meal actual = service.get(RESTAURANT1_MEAL_ID, RESTAURANT1_ID);
+        Meal actual = service.get(RESTAURANT1_MEAL_ID, RESTAURANT_ID);
         assertMatch(actual, RESTAURANT1_MEAL1);
     }
 
     @Test
     void getWithRestaurant() {
-        Meal actual = service.getWithRestaurant(RESTAURANT1_MEAL_ID, RESTAURANT1_ID);
+        Meal actual = service.getWithRestaurant(RESTAURANT1_MEAL_ID, RESTAURANT_ID);
         assertMatch(actual, RESTAURANT1_MEAL1);
         RestaurantTestData.assertMatch(actual.getRestaurant(), RESTAURANT_1);
     }
@@ -52,21 +52,20 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void getAll(){
-        assertMatch(service.getAll(100004), RESTAURANT1_MEALS);
+        assertMatch(service.getAll(RESTAURANT_ID), RESTAURANT1_MEALS);
     }
 
     @Test
     void update(){
         Meal updated = getUpdated();
-        service.update(updated, RESTAURANT1_ID);
-        assertMatch(service.get(updated.getId(), RESTAURANT1_ID), updated);
+        service.update(updated, RESTAURANT_ID);
+        assertMatch(service.get(updated.getId(), RESTAURANT_ID), updated);
     }
 
     @Test
     void updatedNotFound(){
         NotFoundException e = assertThrows(NotFoundException.class, () -> service.update(RESTAURANT1_MEAL1, RESTAURANT2_ID));
         String msg = e.getMessage();
-        System.out.println(msg);
         assertTrue(msg.contains(ErrorType.DATA_NOT_FOUND.name()));
         assertTrue(msg.contains(NotFoundException.NOT_FOUND_EXCEPTION));
         assertTrue(msg.contains(String.valueOf(RESTAURANT1_MEAL_ID)));
@@ -75,7 +74,7 @@ class MealServiceTest extends AbstractServiceTest {
     @Test
     void create(){
         Meal created = getCreated();
-        service.create(created, RESTAURANT1_ID);
-        assertMatch(service.getAll(RESTAURANT1_ID), RESTAURANT1_MEAL1, RESTAURANT1_MEAL2, RESTAURANT1_MEAL3, RESTAURANT1_MEAL4 ,created);
+        service.create(created, RESTAURANT_ID);
+        assertMatch(service.getAll(RESTAURANT_ID), RESTAURANT1_MEAL1, RESTAURANT1_MEAL2, RESTAURANT1_MEAL3, RESTAURANT1_MEAL4 ,created);
     }
 }

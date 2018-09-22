@@ -29,11 +29,12 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public void update(Vote vote) {
+        Assert.notNull(vote, "vote must not be null");
         checkNotFoundWithId(repository.save(vote), vote.getId());
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws NotFoundException{
         checkNotFoundWithId(repository.delete(id), id);
     }
 
@@ -55,5 +56,10 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public int getAllCountByRestaurant(int restaurantId) {
         return repository.getAllCountByRestaurant(restaurantId);
+    }
+
+    @Override
+    public int getAllPositiveCountByRestaurant(int restaurantId) {
+        return repository.getAllPositiveCountByRestaurant(restaurantId);
     }
 }

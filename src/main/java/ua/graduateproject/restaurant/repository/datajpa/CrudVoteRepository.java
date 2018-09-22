@@ -17,13 +17,13 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Modifying
     @Transactional
     @Query("DELETE FROM Vote v WHERE v.id=:id")
-    int delete(int id);
+    int delete(@Param("id") int id);
 
     @Override
     @Transactional
     Vote save(Vote entity);
 
-    @Query("SELECT v FROM Vote v WHERE v.id=:id AND v.userId=:userId")
+    @Query("SELECT v FROM Vote v WHERE v.id=?1 AND v.userId=?2")
     Vote getByUser(int id, int userId);
 
     @Query("SELECT v FROM Vote v WHERE v.restaurantId=:restaurantId")
@@ -31,4 +31,7 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Query("SELECT COUNT (v) FROM Vote v WHERE v.restaurantId=:restaurantId")
     int getAllCountByRestaurant(@Param("restaurantId") int restaurantId);
+
+    @Query("SELECT SUM (v.vote) FROM Vote v WHERE v.restaurantId=:restaurantId")
+    int getAllPositiveCountByRestaurant(@Param("restaurantId") int restaurantId);
 }

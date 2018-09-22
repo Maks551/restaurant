@@ -19,28 +19,37 @@ import static ua.graduateproject.restaurant.util.DateTimeUtil.DATE_TIME_PATTERN;
 @Table(name = "votes")
 public class Vote extends AbstractBaseEntity {
 
+    @Column(name = "user_id", nullable = false)
+    @NotNull
+    private int userId;
+
     @Column(name = "restaurant_id", nullable = false)
     @NotNull
     private int restaurantId;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "vote", nullable = false)
     @NotNull
-    private int userId;
+    private int vote;
 
     @Column(name = "date_time", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DATE_TIME_PATTERN)
     private LocalDateTime dateTime;
 
-    public Vote(int restaurantId, int userId, int votes, LocalDateTime dateTime){
-        this(null, restaurantId, userId, votes, dateTime);
+    public Vote(Vote vote) {
+        this(vote.id, vote.userId, vote.restaurantId, vote.dateTime, vote.vote);
     }
 
-    public Vote(Integer id, int restaurantId, int userId, int votes, LocalDateTime dateTime){
+    public Vote(int userId, int restaurantId, LocalDateTime dateTime, int vote){
+        this(null, restaurantId, userId, dateTime, vote);
+    }
+
+    public Vote(Integer id, int userId, int restaurantId, LocalDateTime dateTime, int vote){
         super(id);
         this.restaurantId = restaurantId;
         this.userId = userId;
         this.dateTime = dateTime;
+        this.vote = vote;
     }
 
     @Override
@@ -50,6 +59,7 @@ public class Vote extends AbstractBaseEntity {
                 ", restaurantId=" + restaurantId +
                 ", userId=" + userId +
                 ", dateTime=" + dateTime +
+                ", vote=" + vote +
                 '}';
     }
 }
