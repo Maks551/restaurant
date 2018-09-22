@@ -43,11 +43,19 @@ public class Restaurant extends AbstractNamedEntity {
     @NotNull(groups = View.Persist.class)
     private User user;
 
-    public Restaurant(Integer id, String name, LocalDateTime dateTimeOfAddMenu, String address, User user) {
+    public Restaurant(Restaurant r) {
+        this(r.id, r.name, r.dateTimeOfAddMenu, r.address);
+        setUser(r.user);
+    }
+
+    public Restaurant(String name, LocalDateTime dateTimeOfAddMenu, String address){
+        this(null, name, dateTimeOfAddMenu, address);
+    }
+
+    public Restaurant(Integer id, String name, LocalDateTime dateTimeOfAddMenu, String address) {
         super(id, name);
         this.address = address;
         this.dateTimeOfAddMenu = dateTimeOfAddMenu;
-        this.user = user;
     }
 
     @Override

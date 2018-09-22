@@ -17,11 +17,17 @@ public class RestaurantTestData {
     public static final int RESTAURANT3_ID = RESTAURANT_ID + 2;
 
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID, "Ресторан 1",
-            LocalDateTime.of(2018, 9, 20, 10, 10), "м. Київ вул. 1", ADMIN_1);
+            LocalDateTime.of(2018, 9, 20, 10, 10), "м. Київ вул. 1");
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID + 1, "Ресторан 2",
-            LocalDateTime.of(2018, 9, 20, 9, 0), "м. Київ вул. 2", ADMIN_1);
+            LocalDateTime.of(2018, 9, 20, 9, 0), "м. Київ вул. 2");
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID + 2, "Ресторан 3",
-            LocalDateTime.of(2018, 9, 20, 9, 30), "м. Київ вул. 3", ADMIN_2);
+            LocalDateTime.of(2018, 9, 20, 9, 30), "м. Київ вул. 3");
+
+    static {
+        RESTAURANT_1.setUser(ADMIN_1);
+        RESTAURANT_2.setUser(ADMIN_2);
+        RESTAURANT_3.setUser(ADMIN_2);
+    }
 
     public static final List<Restaurant> RESTAURANT_LIST = Arrays.asList(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3);
 
@@ -29,12 +35,14 @@ public class RestaurantTestData {
 
     public static Restaurant getCreated() {
         return new Restaurant(null, "Created restaurant",
-                LocalDateTime.of(2018, 9, 22, 10, 10), "м. Київ вул. 4", ADMIN_1);
+                LocalDateTime.of(2018, 9, 22, 10, 10), "м. Київ вул. 4");
     }
 
     public static Restaurant getUpdatedByAdmin_1() {
-        return new Restaurant(RESTAURANT_ID, "Updated restaurant",
-                LocalDateTime.of(2018, 9, 22, 10, 10), "м. Київ вул. 1", ADMIN_1);
+        Restaurant updated = new Restaurant(RESTAURANT_1);
+        updated.setAddress("New address");
+        updated.setName("New name");
+        return updated;
     }
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {

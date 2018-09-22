@@ -8,7 +8,9 @@ import ua.graduateproject.restaurant.model.Role;
 import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Collections;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT_1;
@@ -94,5 +96,12 @@ class UserServiceTest extends AbstractServiceTest {
     @Test
     void getWithRestaurantNotFound() {
         assertThrows(NotFoundException.class, () -> service.getWithRestaurant(1));
+    }
+
+    @Test
+    void testValidation() {
+        validateRootCause(() -> service.create(new User(null, "  ", "invalid@yandex.ru", "password", Role.ROLE_USER)), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(null, "User", "  ", "password",  Role.ROLE_USER)), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(null, "User", "invalid@yandex.ru", "", Role.ROLE_USER)), ConstraintViolationException.class);
     }
 }

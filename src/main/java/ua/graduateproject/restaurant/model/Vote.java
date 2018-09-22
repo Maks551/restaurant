@@ -21,11 +21,11 @@ public class Vote extends AbstractBaseEntity {
 
     @Column(name = "user_id", nullable = false)
     @NotNull
-    private int userId;
+    private Integer userId;
 
     @Column(name = "restaurant_id", nullable = false)
     @NotNull
-    private int restaurantId;
+    private Integer restaurantId;
 
     @Column(name = "vote", nullable = false)
     @NotNull
@@ -44,7 +44,7 @@ public class Vote extends AbstractBaseEntity {
         this(null, restaurantId, userId, dateTime, vote);
     }
 
-    public Vote(Integer id, int userId, int restaurantId, LocalDateTime dateTime, int vote){
+    public Vote(Integer id, Integer userId, Integer restaurantId, LocalDateTime dateTime, Integer vote){
         super(id);
         this.restaurantId = restaurantId;
         this.userId = userId;

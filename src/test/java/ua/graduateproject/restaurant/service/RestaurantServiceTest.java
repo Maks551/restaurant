@@ -7,6 +7,10 @@ import ua.graduateproject.restaurant.UserTestData;
 import ua.graduateproject.restaurant.model.Restaurant;
 import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
+
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ua.graduateproject.restaurant.RestaurantTestData.*;
 import static ua.graduateproject.restaurant.UserTestData.*;
@@ -113,5 +117,12 @@ class RestaurantServiceTest extends AbstractServiceTest {
     @Test
     void getAll() {
         assertMatch(service.getAll(), RESTAURANT_LIST);
+    }
+
+    @Test
+    void testValidation() {
+        validateRootCause(() -> service.create(new Restaurant(null, null, LocalDateTime.of(2018, 9, 20, 10, 10), "address"), ADMIN_ID), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Restaurant(null, "name", null, "address"), ADMIN_ID), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Restaurant(null, "name", LocalDateTime.of(2018, 9, 20, 10, 10), null), ADMIN_ID), ConstraintViolationException.class);
     }
 }

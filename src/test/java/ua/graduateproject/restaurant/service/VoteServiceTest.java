@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import ua.graduateproject.restaurant.model.Vote;
 import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -93,5 +94,12 @@ class VoteServiceTest extends AbstractServiceTest {
     void getAllPositiveCountByRestaurant() {
         int count = service.getAllPositiveCountByRestaurant(RESTAURANT_ID);
         Assertions.assertThat(count).isEqualTo(COUNT_POSITIVE_BY_RESTAURANT1);
+    }
+
+    @Test
+    void testValidation() {
+        validateRootCause(() -> service.create(new Vote(null, null, RESTAURANT_ID, LocalDateTime.of(2018, 9, 20, 10, 10), 1)), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Vote(null, USER_ID, null, LocalDateTime.of(2018, 9, 20, 10, 10), 1)), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Vote(null, USER_ID, RESTAURANT_ID, null, 1)), ConstraintViolationException.class);
     }
 }
