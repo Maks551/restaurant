@@ -34,8 +34,6 @@ CREATE TABLE restaurants
   date_of_add_menu  TIMESTAMP               NOT NULL,
   address           VARCHAR                 NOT NULL,
   user_id           INTEGER                 NOT NULL
---   CONSTRAINT user_restaurant_idx UNIQUE (user_id, id),
---   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX restaurant_unique_address_idx ON restaurants (address);
 CREATE UNIQUE INDEX restaurant_unique_menu_date_idx ON restaurants (date_of_add_menu);
@@ -45,7 +43,7 @@ CREATE TABLE meals
   id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   restaurant_id     INTEGER                 NOT NULL,
   description       VARCHAR                 NOT NULL,
-  calories          INTEGER                 NOT NULL,
+  price             INTEGER                 NOT NULL,
   CONSTRAINT meal_restaurant_idx UNIQUE (restaurant_id, id),
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );

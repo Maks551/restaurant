@@ -12,11 +12,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 import static ua.graduateproject.restaurant.util.DateTimeUtil.DATE_TIME_PATTERN;
-import static ua.graduateproject.restaurant.util.DateTimeUtil.TIME_PATTERN;
 
 @Setter @Getter
 @NoArgsConstructor

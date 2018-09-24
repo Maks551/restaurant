@@ -11,7 +11,7 @@ import java.util.List;
 
 import static ua.graduateproject.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
-@Service()
+@Service("voteService")
 public class VoteServiceImpl implements VoteService {
 
     private final VoteRepository repository;

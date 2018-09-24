@@ -10,9 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Setter @Getter
 @NoArgsConstructor
@@ -25,10 +22,10 @@ public class Meal extends AbstractBaseEntity {
     @NotBlank
     private String description;
 
-    @Column(name = "calories", nullable = false)
-    @Range(min = 10, max = 5000)
+    @Column(name = "price", nullable = false)
+    @Range(min = 1, max = 1000)
     @NotNull
-    private int calories;
+    private int price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -36,14 +33,14 @@ public class Meal extends AbstractBaseEntity {
     @NotNull(groups = View.Persist.class)
     private Restaurant restaurant;
 
-    public Meal(String description, int calories){
-        this(null, description, calories);
+    public Meal(String description, int price){
+        this(null, description, price);
     }
 
-    public Meal(Integer id, String description, int calories){
+    public Meal(Integer id, String description, int price){
         super(id);
         this.description = description;
-        this.calories = calories;
+        this.price = price;
     }
 
     @Override
@@ -51,7 +48,7 @@ public class Meal extends AbstractBaseEntity {
         return "Meal{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
-                ", calories=" + calories +
+                ", price=" + price +
                 '}';
     }
 }

@@ -82,7 +82,7 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void testValidation() {
-        validateRootCause(() -> service.create(new Meal(null, null, 300), RESTAURANT_ID), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Meal(null, null, 30), RESTAURANT_ID), ConstraintViolationException.class);
         validateRootCause(() -> service.create(new Meal(null, "Description", 0), RESTAURANT_ID), ConstraintViolationException.class);
     }
 }
