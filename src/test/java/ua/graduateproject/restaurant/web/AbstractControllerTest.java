@@ -11,10 +11,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import ua.graduateproject.restaurant.Profiles;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringJUnitWebConfig(locations = {
         "classpath:spring/spring-app.xml",
