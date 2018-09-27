@@ -4,6 +4,7 @@ import ua.graduateproject.restaurant.model.Vote;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT2_ID;
@@ -32,8 +33,20 @@ public class VoteTestData {
     public static final Vote VOTE_8 = new Vote(VOTE_ID + 7, USER2_ID, RESTAURANT3_ID,
             LocalDateTime.of(2018, 9, 20, 16, 0), 1);
 
+    public static final List<Vote> RESTAURANT1_VOTES = Arrays.asList(VOTE_1, VOTE_2, VOTE_3, VOTE_4);
+
     public static final int COUNT_BY_RESTAURANT1 = 4;
     public static final int COUNT_POSITIVE_BY_RESTAURANT1 = 2;
+
+    public static Vote getUpdated() {
+        return new Vote(VOTE_1.getId(), VOTE_1.getUserId(), VOTE_1.getRestaurantId(),
+                LocalDateTime.of(2018, 9, 21, 10, 30), -1);
+    }
+
+    public static Vote getCreated() {
+        return new Vote(null, ADMIN_ID, RESTAURANT_ID,
+                LocalDateTime.of(2018, 9, 21, 10, 0), 1);
+    }
 
     public static void assertMatch(Vote actual, Vote expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "restaurant");

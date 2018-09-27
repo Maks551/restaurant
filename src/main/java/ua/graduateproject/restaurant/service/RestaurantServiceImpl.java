@@ -29,7 +29,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void update(Restaurant restaurant, int userId) {
-        System.out.println(restaurant.getUser());
         checkNotFoundWithId(repository.save(restaurant, userId), restaurant.getId());
     }
 

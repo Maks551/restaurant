@@ -33,7 +33,7 @@ public class RestaurantRestController {
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable("id") int id) {
         log.info("get {}", id);
-        return service.get(id);
+        return service.getWithMenu(id);
     }
 
     @DeleteMapping("/{id}")
@@ -44,7 +44,7 @@ public class RestaurantRestController {
         service.delete(id, 100004);
     }
 
-    @GetMapping(value = "all")
+    @GetMapping("all")
     public List<Restaurant> getAll() {
         log.info("getAll restaurants");
         return service.getAll();
@@ -54,7 +54,8 @@ public class RestaurantRestController {
     public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
         assureIdConsistent(restaurant, id);
         log.info("update restaurant {}", id);
-        service.update(restaurant, id);
+        int userId = SecurityUtil.authUserId();
+        service.update(restaurant, userId);
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
@@ -65,7 +66,7 @@ public class RestaurantRestController {
         Restaurant created = service.create(restaurant, userId);
 
         URI uriOfNewResponse = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
+                .path(REST_URL + "/{userId}")
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResponse).body(created);

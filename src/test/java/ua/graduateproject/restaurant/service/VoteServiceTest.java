@@ -23,7 +23,7 @@ class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     void create() {
-        Vote newVote = new Vote(null, ADMIN_ID, RESTAURANT_ID, LocalDateTime.of(2018, 9, 21, 10, 0), 1);
+        Vote newVote = getCreated();
         Vote created = service.create(newVote);
         assertMatch(service.getAll(RESTAURANT_ID), VOTE_1, VOTE_2, VOTE_3, VOTE_4, created);
     }
@@ -36,19 +36,16 @@ class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     void update() {
-        Vote vote = new Vote(VOTE_1);
-        vote.setDateTime(LocalDateTime.of(2018, 9, 21, 10, 30));
-        vote.setVote(-1);
-        service.update(new Vote(vote));
-        assertMatch(service.get(vote.getId()), vote);
+        Vote updated = getUpdated();
+        service.update(new Vote(updated));
+        assertMatch(service.get(updated.getId()), updated);
     }
 
     @Test
     void updateRepeat() {
-        Vote vote = new Vote(VOTE_1);
-        vote.setDateTime(LocalDateTime.of(2018, 9, 21, 11, 30));
-        vote.setVote(-1);
-        assertThrows(NotFoundException.class, () -> service.update(new Vote(vote)));
+        Vote updated = getUpdated();
+        updated.setDateTime(LocalDateTime.of(2018, 9, 21, 11, 30));
+        assertThrows(NotFoundException.class, () -> service.update(new Vote(updated)));
     }
 
     @Test
@@ -81,7 +78,7 @@ class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     void getAll() {
-        assertMatch(service.getAll(RESTAURANT_ID), VOTE_1, VOTE_2, VOTE_3, VOTE_4);
+        assertMatch(service.getAll(RESTAURANT_ID), RESTAURANT1_VOTES);
     }
 
     @Test

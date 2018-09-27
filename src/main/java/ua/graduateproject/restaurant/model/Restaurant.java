@@ -1,12 +1,12 @@
 package ua.graduateproject.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
-import ua.graduateproject.restaurant.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -38,7 +38,7 @@ public class Restaurant extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull(groups = View.Persist.class)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     public Restaurant(Restaurant r) {

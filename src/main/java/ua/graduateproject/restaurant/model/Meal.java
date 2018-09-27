@@ -1,10 +1,10 @@
 package ua.graduateproject.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
-import ua.graduateproject.restaurant.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -30,7 +30,7 @@ public class Meal extends AbstractBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull(groups = View.Persist.class)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Restaurant restaurant;
 
     public Meal(String description, int price){

@@ -1,5 +1,6 @@
 package ua.graduateproject.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonIgnore
     private Date registered = new Date();
 
     @Enumerated(EnumType.STRING)

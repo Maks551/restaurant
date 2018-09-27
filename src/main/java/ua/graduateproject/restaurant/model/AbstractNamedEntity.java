@@ -17,10 +17,6 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity {
     @Column(name = "name", nullable = false)
     protected String name;
 
-    public boolean isNew(){
-        return this.name == null;
-    }
-
     protected AbstractNamedEntity(Integer id, String name){
         super(id);
         this.name = name;

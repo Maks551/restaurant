@@ -44,7 +44,7 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
         if (user == null || !user.getRoles().contains(Role.ROLE_ADMIN)) {
             throw new NotFoundException("user mast be admin");
         }
-        if (restaurant.getId() != null && restaurant.getUser() != null && restaurant.getUser().getId() != userId){
+        if (restaurant.getUser() != null && restaurant.getUser().getId() != userId){
             return null;
         }
         restaurant.setUser(user);
