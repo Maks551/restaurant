@@ -3,6 +3,7 @@ package ua.graduateproject.restaurant.web.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ua.graduateproject.restaurant.model.User;
+import ua.graduateproject.restaurant.to.UserTo;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static ua.graduateproject.restaurant.web.SecurityUtil.authUserId;
@@ -26,8 +27,8 @@ public class ProfileRestController extends AbstractUserRestController{
     }
 
     @PutMapping(consumes = APPLICATION_JSON_VALUE)
-    public void update(@RequestBody User user) {
+    public void update(@RequestBody UserTo userTo) {
         int id = authUserId();
-        super.update(user, id);
+        super.update(userTo, id);
     }
 }

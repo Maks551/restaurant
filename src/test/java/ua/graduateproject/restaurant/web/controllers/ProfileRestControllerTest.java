@@ -3,11 +3,11 @@ package ua.graduateproject.restaurant.web.controllers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import ua.graduateproject.restaurant.model.Role;
 import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.service.UserService;
+import ua.graduateproject.restaurant.to.UserTo;
+import ua.graduateproject.restaurant.util.UserUtil;
 import ua.graduateproject.restaurant.web.AbstractControllerTest;
-import ua.graduateproject.restaurant.web.SecurityUtil;
 import ua.graduateproject.restaurant.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -43,12 +43,12 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
     void testUpdate() throws Exception {
-        User updated = new User(USER_ID, "New name", "new.email@gmail.com", "new.password", Role.ROLE_USER);
+        UserTo updatedTo = new UserTo(USER_ID, "New name", "new.email@gmail.com", "new.password");
         mockMvc.perform(put(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(updated)))
+                .content(JsonUtil.writeValue(updatedTo)))
                 .andExpect(status().isOk());
 
-        assertMatch(service.get(USER_ID), updated);
+        assertMatch(service.getByEmail("new.email@gmail.com"), UserUtil.updateFromTo(new User(USER_1), updatedTo));
     }
 }
