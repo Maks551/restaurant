@@ -1,12 +1,13 @@
 package ua.graduateproject.restaurant.util;
 
+import ua.graduateproject.restaurant.model.Role;
 import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.to.UserTo;
 
 public class UserUtil {
 
-    public static UserTo asTo(User user) {
-        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+    public static User createNewFromTo(UserTo newUser) {
+        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPassword(), Role.ROLE_USER);
     }
 
     public static User updateFromTo(User user, UserTo userTo) {
@@ -14,5 +15,9 @@ public class UserUtil {
         user.setEmail(userTo.getEmail());
         user.setPassword(userTo.getPassword());
         return user;
+    }
+
+    public static UserTo asTo(User user) {
+        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
     }
 }

@@ -7,8 +7,8 @@ INSERT INTO users (name, email, password) VALUES
   ('User2', 'user2@gmail.com', 'password'),
   ('User3', 'user3@gmail.com', 'password'),
   ('User4', 'user4@gmail.com', 'password'),
-  ('Admin1', 'admin1@gmail.com', 'admin'),
-  ('Admin2', 'admin2@gmail.com', 'admin');
+  ('Admin1', 'admin1@gmail.com', 'user'),
+  ('Admin2', 'admin2@gmail.com', 'user');
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 100000),

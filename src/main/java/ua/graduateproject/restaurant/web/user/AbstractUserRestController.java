@@ -1,4 +1,4 @@
-package ua.graduateproject.restaurant.web.controllers;
+package ua.graduateproject.restaurant.web.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import java.util.List;
 import static ua.graduateproject.restaurant.util.ValidationUtil.assureIdConsistent;
 import static ua.graduateproject.restaurant.util.ValidationUtil.checkNew;
 
-public class AbstractUserRestController {
+public abstract class AbstractUserRestController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired

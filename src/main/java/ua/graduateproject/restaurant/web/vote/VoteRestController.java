@@ -1,4 +1,4 @@
-package ua.graduateproject.restaurant.web.controllers;
+package ua.graduateproject.restaurant.web.vote;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

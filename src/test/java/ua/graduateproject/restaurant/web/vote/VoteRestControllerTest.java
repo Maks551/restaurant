@@ -1,11 +1,11 @@
-package ua.graduateproject.restaurant.web.controllers;
+package ua.graduateproject.restaurant.web.vote;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
-import ua.graduateproject.restaurant.model.Meal;
-import ua.graduateproject.restaurant.service.MealService;
+import ua.graduateproject.restaurant.model.Vote;
+import ua.graduateproject.restaurant.service.VoteService;
 import ua.graduateproject.restaurant.web.AbstractControllerTest;
 import ua.graduateproject.restaurant.web.json.JsonUtil;
 
@@ -13,67 +13,73 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ua.graduateproject.restaurant.MealTestData.*;
-import static ua.graduateproject.restaurant.MealTestData.RESTAURANT1_MEAL3;
-import static ua.graduateproject.restaurant.MealTestData.RESTAURANT1_MEAL4;
 import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT_ID;
 import static ua.graduateproject.restaurant.TestUtil.contentJson;
 import static ua.graduateproject.restaurant.TestUtil.readFromJson;
+import static ua.graduateproject.restaurant.TestUtil.userHttpBasic;
+import static ua.graduateproject.restaurant.UserTestData.ADMIN_1;
+import static ua.graduateproject.restaurant.UserTestData.USER_1;
+import static ua.graduateproject.restaurant.VoteTestData.*;
 
-class MealRestControllerTest extends AbstractControllerTest {
-    private static final String REST_URL = MealRestController.REST_URL + '/';
+public class VoteRestControllerTest extends AbstractControllerTest {
+    private static final String REST_URL = VoteRestController.REST_URL + '/';
 
     @Autowired
-    private MealService service;
+    private VoteService service;
 
     @Test
-    void testGet() throws Exception{
-        mockMvc.perform(get(REST_URL + RESTAURANT1_MEAL_ID + "/restaurant-id/" + RESTAURANT_ID))
+    void testGet() throws Exception {
+        mockMvc.perform(get(REST_URL + VOTE_ID)
+                .with(userHttpBasic(USER_1)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(contentJson(RESTAURANT1_MEAL1));
+                .andExpect(contentJson(VOTE_1));
     }
 
     @Test
     void testDelete() throws Exception {
-        mockMvc.perform(delete(REST_URL + RESTAURANT1_MEAL_ID + "/restaurant-id/" + RESTAURANT_ID))
+        mockMvc.perform(delete(REST_URL + VOTE_ID)
+                .with(userHttpBasic(USER_1)))
                 .andExpect(status().isNoContent());
-        assertMatch(service.getAll(RESTAURANT_ID), RESTAURANT1_MEAL2, RESTAURANT1_MEAL3, RESTAURANT1_MEAL4);
+        assertMatch(service.getAll(RESTAURANT_ID), VOTE_2, VOTE_3, VOTE_4);
     }
 
     @Test
-    void testGetAll() throws Exception{
-        mockMvc.perform(get(REST_URL + "restaurant-id/" + RESTAURANT_ID))
+    void testGetAll() throws Exception {
+        mockMvc.perform(get(REST_URL + "restaurant-id/" + RESTAURANT_ID)
+                .with(userHttpBasic(ADMIN_1)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(contentJson(RESTAURANT1_MEALS));
+                .andExpect(contentJson(RESTAURANT1_VOTES));
     }
 
     @Test
-    void testUpdate() throws Exception{
-        Meal updated = getUpdated();
+    void testUpdate() throws Exception {
+        Vote updated = getUpdated();
 
-        mockMvc.perform(put(REST_URL + RESTAURANT1_MEAL_ID + "/restaurant-id/" + RESTAURANT_ID)
+        mockMvc.perform(put(REST_URL + VOTE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
+                .with(userHttpBasic(USER_1))
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
 
-        assertMatch(service.get(RESTAURANT1_MEAL_ID, RESTAURANT_ID), updated);
+        assertMatch(service.get(VOTE_ID), updated);
     }
 
     @Test
-    void testCreate() throws Exception {
-        Meal created = getCreated();
-        ResultActions action = mockMvc.perform(post(REST_URL + "restaurant-id/" + RESTAURANT_ID)
+    void testCreated() throws Exception {
+        Vote created = getCreated();
+        ResultActions action = mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
+                .with(userHttpBasic(USER_1))
                 .content(JsonUtil.writeValue(created))).andDo(print());
 
-        Meal returned = readFromJson(action, Meal.class);
+        Vote returned = readFromJson(action, Vote.class);
         created.setId(returned.getId());
 
         assertMatch(returned, created);
-        assertMatch(service.getAll(RESTAURANT_ID), RESTAURANT1_MEAL1, RESTAURANT1_MEAL2, RESTAURANT1_MEAL3, RESTAURANT1_MEAL4, created);
+        assertMatch(service.getAll(RESTAURANT_ID), VOTE_1, VOTE_2, VOTE_3, VOTE_4, created);
     }
 }

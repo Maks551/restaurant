@@ -1,4 +1,4 @@
-package ua.graduateproject.restaurant.web.controllers;
+package ua.graduateproject.restaurant.web.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(value = AdminRestController.REST_URL, produces = APPLICATION_JSON_VALUE)
-public class AdminRestController extends AbstractUserRestController{
+public class AdminRestController extends AbstractUserRestController {
     static final String REST_URL = "/rest/admin/users";
 
     @GetMapping

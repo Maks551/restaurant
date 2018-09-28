@@ -1,9 +1,12 @@
 package ua.graduateproject.restaurant;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
-import ua.graduateproject.restaurant.web.controllers.MealRestController;
+import ua.graduateproject.restaurant.web.meal.MealAdminRestController;
 
 import java.util.Arrays;
+
+import static ua.graduateproject.restaurant.TestUtil.mockAuthorize;
+import static ua.graduateproject.restaurant.UserTestData.USER_1;
 
 public class SpringMain {
     public static void main(String[] args) {
@@ -13,9 +16,11 @@ public class SpringMain {
             appCtx.load("spring/spring-app.xml", "spring/spring-db.xml");
             appCtx.refresh();
 
+            mockAuthorize(USER_1);
+
             System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
 
-            MealRestController mealController = appCtx.getBean(MealRestController.class);
+            MealAdminRestController mealController = appCtx.getBean(MealAdminRestController.class);
         }
     }
 }

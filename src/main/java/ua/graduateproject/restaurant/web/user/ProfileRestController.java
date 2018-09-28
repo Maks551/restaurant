@@ -1,4 +1,4 @@
-package ua.graduateproject.restaurant.web.controllers;
+package ua.graduateproject.restaurant.web.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import static ua.graduateproject.restaurant.web.SecurityUtil.authUserId;
 
 @RestController
 @RequestMapping(value = ProfileRestController.REST_URL, produces = APPLICATION_JSON_VALUE)
-public class ProfileRestController extends AbstractUserRestController{
+public class ProfileRestController extends AbstractUserRestController {
     static final String REST_URL = "/rest/profile";
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)

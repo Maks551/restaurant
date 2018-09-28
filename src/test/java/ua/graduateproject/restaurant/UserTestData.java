@@ -23,8 +23,8 @@ public class UserTestData {
     public static final User USER_2 = new User(USER2_ID, "User2", "user2@gmail.com", "password", Role.ROLE_USER);
     public static final User USER_3 = new User(USER3_ID, "User3", "user3@gmail.com", "password", Role.ROLE_USER);
     public static final User USER_4 = new User(USER4_ID, "User4", "user4@gmail.com", "password", Role.ROLE_USER);
-    public static final User ADMIN_1 = new User(ADMIN_ID, "Admin1", "admin1@gmail.com", "admin", Role.ROLE_USER, Role.ROLE_ADMIN);
-    public static final User ADMIN_2 = new User(ADMIN2_ID, "Admin2", "admin2@gmail.com", "admin", Role.ROLE_USER, Role.ROLE_ADMIN);
+    public static final User ADMIN_1 = new User(ADMIN_ID, "Admin1", "admin1@gmail.com", "user", Role.ROLE_USER, Role.ROLE_ADMIN);
+    public static final User ADMIN_2 = new User(ADMIN2_ID, "Admin2", "admin2@gmail.com", "user", Role.ROLE_USER, Role.ROLE_ADMIN);
 
     public static final List<User> USERS = Arrays.asList(ADMIN_1, ADMIN_2, USER_1, USER_2, USER_3, USER_4);
 
