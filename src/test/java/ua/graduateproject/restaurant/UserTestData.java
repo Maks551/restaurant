@@ -1,13 +1,17 @@
 package ua.graduateproject.restaurant;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ua.graduateproject.restaurant.model.Role;
 import ua.graduateproject.restaurant.model.User;
+import ua.graduateproject.restaurant.web.json.JsonUtil;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static ua.graduateproject.restaurant.model.AbstractBaseEntity.START_SEQ;
+import static ua.graduateproject.restaurant.web.json.JsonUtil.writeIgnoreProps;
 
 public class UserTestData {
     public static final int USER_ID = START_SEQ;
@@ -29,7 +33,7 @@ public class UserTestData {
     public static final List<User> USERS = Arrays.asList(ADMIN_1, ADMIN_2, USER_1, USER_2, USER_3, USER_4);
 
     public static User getCreatedUser() {
-        return new User(null, "Created user", "created@gmail.com", "created", Role.ROLE_USER);
+        return new User(null, "Created user", "created@gmail.com", "newPassword", Role.ROLE_USER, Role.ROLE_ADMIN);
     }
 
     public static User getCreatedDuplicateEmail() {
@@ -46,5 +50,17 @@ public class UserTestData {
 
     public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("restaurants", "registered", "password").isEqualTo(expected);
+    }
+
+    public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
+    }
+
+    public static ResultMatcher contentJson(User... expected) {
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "registered", "password"));
+    }
+
+    public static ResultMatcher contentJson(User expected) {
+        return content().json(writeIgnoreProps(expected, "registered", "password"));
     }
 }

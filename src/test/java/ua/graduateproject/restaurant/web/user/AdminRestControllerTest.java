@@ -8,7 +8,6 @@ import ua.graduateproject.restaurant.model.Role;
 import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.service.UserService;
 import ua.graduateproject.restaurant.web.AbstractControllerTest;
-import ua.graduateproject.restaurant.web.user.AdminRestController;
 import ua.graduateproject.restaurant.web.json.JsonUtil;
 
 import java.util.Collections;
@@ -17,7 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ua.graduateproject.restaurant.TestUtil.contentJson;
 import static ua.graduateproject.restaurant.TestUtil.readFromJson;
 import static ua.graduateproject.restaurant.TestUtil.userHttpBasic;
 import static ua.graduateproject.restaurant.UserTestData.*;
@@ -66,7 +64,7 @@ public class AdminRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(contentJson(USERS));
+                .andExpect(contentJson(ADMIN_1, ADMIN_2, USER_1, USER_2, USER_3, USER_4));
     }
 
     @Test
@@ -98,7 +96,7 @@ public class AdminRestControllerTest extends AbstractControllerTest {
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(ADMIN_1))
-                .content(JsonUtil.writeValue(expected)))
+                .content(jsonWithPassword(expected, "newPassword")))
                 .andExpect(status().isCreated()).andDo(print());
 
         User returned = readFromJson(action, User.class);

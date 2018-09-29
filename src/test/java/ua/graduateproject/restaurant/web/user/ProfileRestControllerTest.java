@@ -8,7 +8,6 @@ import ua.graduateproject.restaurant.service.UserService;
 import ua.graduateproject.restaurant.to.UserTo;
 import ua.graduateproject.restaurant.util.UserUtil;
 import ua.graduateproject.restaurant.web.AbstractControllerTest;
-import ua.graduateproject.restaurant.web.user.ProfileRestController;
 import ua.graduateproject.restaurant.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -17,7 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ua.graduateproject.restaurant.TestUtil.contentJson;
 import static ua.graduateproject.restaurant.TestUtil.userHttpBasic;
 import static ua.graduateproject.restaurant.UserTestData.*;
 
