@@ -5,6 +5,7 @@ import ua.graduateproject.restaurant.web.meal.MealAdminRestController;
 
 import java.util.Arrays;
 
+import static ua.graduateproject.restaurant.RestaurantTestData.RESTAURANT_ID;
 import static ua.graduateproject.restaurant.TestUtil.mockAuthorize;
 import static ua.graduateproject.restaurant.UserTestData.USER_1;
 
@@ -21,6 +22,7 @@ public class SpringMain {
             System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
 
             MealAdminRestController mealController = appCtx.getBean(MealAdminRestController.class);
+            System.out.println(mealController.getAll(RESTAURANT_ID));
         }
     }
 }

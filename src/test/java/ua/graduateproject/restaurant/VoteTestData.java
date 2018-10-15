@@ -24,14 +24,6 @@ public class VoteTestData {
             LocalDateTime.of(2018, 9, 20, 11, 30), -1);
     public static final Vote VOTE_4 = new Vote(VOTE_ID + 3, USER_ID, RESTAURANT_ID,
             LocalDateTime.of(2018, 9, 19, 10, 0), 1);
-    public static final Vote VOTE_5 = new Vote(VOTE_ID + 4, USER_ID, RESTAURANT2_ID,
-            LocalDateTime.of(2018, 9, 20, 15, 10), 1);
-    public static final Vote VOTE_6 = new Vote(VOTE_ID + 5, USER3_ID, RESTAURANT2_ID,
-            LocalDateTime.of(2018, 9, 20, 11, 10), 1);
-    public static final Vote VOTE_7 = new Vote(VOTE_ID + 6, USER4_ID, RESTAURANT2_ID,
-            LocalDateTime.of(2018, 9, 20, 15, 30), -1);
-    public static final Vote VOTE_8 = new Vote(VOTE_ID + 7, USER2_ID, RESTAURANT3_ID,
-            LocalDateTime.of(2018, 9, 20, 16, 0), 1);
 
     public static final List<Vote> RESTAURANT1_VOTES = Arrays.asList(VOTE_1, VOTE_2, VOTE_3, VOTE_4);
 

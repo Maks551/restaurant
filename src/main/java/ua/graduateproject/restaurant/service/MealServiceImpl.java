@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ua.graduateproject.restaurant.model.Meal;
 import ua.graduateproject.restaurant.repository.MealRepository;
-import ua.graduateproject.restaurant.util.ValidationUtil;
-import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 

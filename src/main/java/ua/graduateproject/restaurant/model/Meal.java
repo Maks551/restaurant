@@ -16,14 +16,15 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames =  "restaurant_id",name = "meal_restaurant_idx")})
 public class Meal extends AbstractBaseEntity {
+    private static final int MAX_SIZE_DESCRIPTION = 120;
 
     @Column(name = "description", nullable = false)
-    @Size(min = 2, max = 120)
+    @Size(min = 2, max = MAX_SIZE_DESCRIPTION)
     @NotBlank
     private String description;
 
     @Column(name = "price", nullable = false)
-    @Range(min = 1, max = 1000)
+    @Range(min = 1)
     @NotNull
     private int price;
 

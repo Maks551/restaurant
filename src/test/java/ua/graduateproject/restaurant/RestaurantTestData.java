@@ -16,12 +16,12 @@ public class RestaurantTestData {
     public static final int RESTAURANT2_ID = RESTAURANT_ID + 1;
     public static final int RESTAURANT3_ID = RESTAURANT_ID + 2;
 
-    public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID, "Ресторан 1",
-            LocalDateTime.of(2018, 9, 20, 10, 10), "м. Київ вул. 1");
-    public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID + 1, "Ресторан 2",
-            LocalDateTime.of(2018, 9, 20, 9, 0), "м. Київ вул. 2");
-    public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID + 2, "Ресторан 3",
-            LocalDateTime.of(2018, 9, 20, 9, 30), "м. Київ вул. 3");
+    public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID, "Restaurant 1",
+            LocalDateTime.of(2018, 9, 20, 10, 10), "Kiev str. 1");
+    public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID + 1, "Restaurant 2",
+            LocalDateTime.of(2018, 9, 20, 9, 0), "Kiev str. 2");
+    public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID + 2, "Restaurant 3",
+            LocalDateTime.of(2018, 9, 20, 9, 30), "Kiev str. 3");
 
     static {
         RESTAURANT_1.setUser(ADMIN_1);
@@ -31,7 +31,7 @@ public class RestaurantTestData {
 
     public static final List<Restaurant> RESTAURANT_LIST = Arrays.asList(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3);
 
-    public static final String ADDRESS_R1 = "м. Київ вул. 1";
+    public static final String ADDRESS_R1 = "Kiev str. 1";
 
     public static Restaurant getCreated() {
         return new Restaurant(null, "Created restaurant",

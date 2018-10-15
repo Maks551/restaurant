@@ -7,21 +7,26 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+import static ua.graduateproject.restaurant.model.AbstractNamedEntity.MAX_SIZE_NAME;
+import static ua.graduateproject.restaurant.util.UserUtil.MAX_SIZE_EMAIL;
+import static ua.graduateproject.restaurant.util.UserUtil.MAX_SIZE_PASSWORD;
+import static ua.graduateproject.restaurant.util.UserUtil.MIN_SIZE_PASSWORD;
+
 public class UserTo extends BaseTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotBlank
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = MAX_SIZE_NAME)
     @SafeHtml
     private String name;
 
     @Email
     @NotBlank
-    @Size(max = 100)
+    @Size(max = MAX_SIZE_EMAIL)
     @SafeHtml // https://stackoverflow.com/questions/17480809
     private String email;
 
-    @Size(min = 5, max = 32)
+    @Size(min = MIN_SIZE_PASSWORD, max = MAX_SIZE_PASSWORD)
     private String password;
 
     public UserTo() {

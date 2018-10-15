@@ -52,8 +52,8 @@ public class UserTestData {
         assertThat(actual).usingElementComparatorIgnoringFields("restaurants", "registered", "password").isEqualTo(expected);
     }
 
-    public static String jsonWithPassword(User user, String passw) {
-        return JsonUtil.writeAdditionProps(user, "password", passw);
+    public static String jsonWithPassword(User user, String pass) {
+        return JsonUtil.writeAdditionProps(user, "password", pass);
     }
 
     public static ResultMatcher contentJson(User... expected) {

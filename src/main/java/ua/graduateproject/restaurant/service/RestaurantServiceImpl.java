@@ -43,7 +43,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant getByUser(int id, int userId) throws NotFoundException {
+    public Restaurant getByUser(int id, int userId){
         return checkNotFoundWithId(repository.getByUser(id, userId), id);
     }
 

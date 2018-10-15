@@ -9,15 +9,15 @@ public interface RestaurantService {
 
     Restaurant create(Restaurant restaurant, int userId);
 
-    void update(Restaurant restaurant, int userId) throws NotFoundException;
+    void update(Restaurant restaurant, int userId);
 
-    void delete(int id, int userId) throws NotFoundException;
+    void delete(int id, int userId);
 
-    Restaurant get(int id) throws NotFoundException;
+    Restaurant get(int id);
 
-    Restaurant getByUser(int id, int userId) throws NotFoundException;
+    Restaurant getByUser(int id, int userId);
 
-    Restaurant getByAddress(String address) throws NotFoundException;
+    Restaurant getByAddress(String address);
 
     Restaurant getWithMenu(int id);
 

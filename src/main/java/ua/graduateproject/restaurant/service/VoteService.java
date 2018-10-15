@@ -11,9 +11,9 @@ public interface VoteService {
 
     void update(Vote vote);
 
-    void delete(int id) throws NotFoundException;
+    void delete(int id);
 
-    Vote get(int id) throws NotFoundException;
+    Vote get(int id);
 
     Vote getByUser(int id, int userId);
 

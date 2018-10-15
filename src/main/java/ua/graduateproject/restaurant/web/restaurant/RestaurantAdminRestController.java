@@ -15,13 +15,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = RestaurantAdminRestController.REST_URL, produces = APPLICATION_JSON_VALUE)
 public class RestaurantAdminRestController extends AbstractRestaurantRestController{
     static final String REST_URL = "/rest/admin/restaurants";
+    private static final String WITH_ID = "/{id}";
 
-    @GetMapping("/{id}")
+    @GetMapping(WITH_ID)
     public Restaurant get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(WITH_ID)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
@@ -32,7 +33,7 @@ public class RestaurantAdminRestController extends AbstractRestaurantRestControl
         return super.getAll();
     }
 
-    @PutMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
+    @PutMapping(value = WITH_ID, consumes = APPLICATION_JSON_VALUE)
     public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
         super.update(restaurant, id);
     }
@@ -42,7 +43,7 @@ public class RestaurantAdminRestController extends AbstractRestaurantRestControl
         Restaurant created = super.create(restaurant);
 
         URI uriOfNewResponse = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
+                .path(REST_URL + WITH_ID)
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResponse).body(created);

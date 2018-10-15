@@ -4,7 +4,7 @@ import ua.graduateproject.restaurant.HasId;
 import ua.graduateproject.restaurant.util.exception.IllegalRequestDataException;
 import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
-public class ValidationUtil {
+public final class ValidationUtil {
 
     public static <T> T checkNotFoundWithId(T object, int id) {
         return checkNotFound(object, "id=" + id);
@@ -48,7 +48,7 @@ public class ValidationUtil {
         Throwable result = t;
         Throwable cause;
 
-        while (null != (cause = result.getCause()) && (result != cause)) {
+        while ((null != ((cause = result.getCause()))) && (!cause.equals(result))) {
             result = cause;
         }
         return result;

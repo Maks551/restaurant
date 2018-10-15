@@ -20,7 +20,7 @@ import static ua.graduateproject.restaurant.TestUtil.userHttpBasic;
 import static ua.graduateproject.restaurant.UserTestData.ADMIN_1;
 import static ua.graduateproject.restaurant.UserTestData.USER_1;
 
-public class RestaurantAdminRestControllerTest extends AbstractControllerTest {
+class RestaurantAdminRestControllerTest extends AbstractControllerTest {
     private static final String REST_URL = RestaurantAdminRestController.REST_URL + '/';
 
     @Autowired

@@ -21,9 +21,9 @@ INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_ADMIN', 100005);
 
 INSERT INTO restaurants (name, address, date_of_add_menu, user_id) VALUES
-  ('Ресторан 1', 'м. Київ вул. 1', '2018-09-20 10:10:00', 100004),
-  ('Ресторан 2', 'м. Київ вул. 2', '2018-09-20 9:00:00', 100004),
-  ('Ресторан 3', 'м. Київ вул. 3', '2018-09-20 9:30:00', 100005);
+  ('Restaurant 1', 'Kiev str. 1', '2018-09-20 10:10:00', 100004),
+  ('Restaurant 2', 'Kiev str. 2', '2018-09-20 9:00:00', 100004),
+  ('Restaurant 3', 'Kiev str. 3', '2018-09-20 9:30:00', 100005);
 
 INSERT INTO votes (user_id, restaurant_id, date_time, vote) VALUES
   (100000, 100006, '2018-09-20 10:10:00', 1),
@@ -36,13 +36,13 @@ INSERT INTO votes (user_id, restaurant_id, date_time, vote) VALUES
   (100001, 100008, '2018-09-20 16:00:00', 1);
 
 INSERT INTO meals (description, price, restaurant_id) VALUES
-  ('Борщ', 25, 100006),
-  ('Суп', 25, 100006),
-  ('Салат', 30, 100006),
-  ('Гарнір', 50, 100006),
-  ('Пиріг', 20, 100007),
-  ('Кекс', 18, 100007),
-  ('Торт', 22, 100007),
-  ('Біфштекс', 80, 100008),
-  ('Пельмені', 40, 100008),
-  ('Шашлик', 60, 100008);
+  ('Beet soup', 25, 100006),
+  ('Soup', 25, 100006),
+  ('Salad', 30, 100006),
+  ('Garnish', 50, 100006),
+  ('Pie', 20, 100007),
+  ('Cake', 18, 100007),
+  ('Strawberry Cake', 22, 100007),
+  ('Steak', 80, 100008),
+  ('Dumplings', 40, 100008),
+  ('Kebab', 60, 100008);

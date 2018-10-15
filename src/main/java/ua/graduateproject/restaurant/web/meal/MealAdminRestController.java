@@ -15,30 +15,31 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = MealAdminRestController.REST_URL, produces = APPLICATION_JSON_VALUE)
 public class MealAdminRestController extends AbstractMealRestController{
     static final String REST_URL = "/rest/admin/meals";
+    private static final String RESTAURANT = "restaurant";
 
     @GetMapping("/{id}/restaurant-id/{restaurant}")
-    public Meal get(@PathVariable("id") int id, @PathVariable("restaurant") int restaurantId) {
+    public Meal get(@PathVariable("id") int id, @PathVariable(RESTAURANT) int restaurantId) {
         return super.get(id, restaurantId);
     }
 
     @DeleteMapping("/{id}/restaurant-id/{restaurant}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") int id, @PathVariable("restaurant") int restaurantId) {
+    public void delete(@PathVariable("id") int id, @PathVariable(RESTAURANT) int restaurantId) {
         super.delete(id, restaurantId);
     }
 
     @GetMapping(value = "restaurant-id/{restaurant}")
-    public List<Meal> getAll(@PathVariable("restaurant") int restaurantId) {
+    public List<Meal> getAll(@PathVariable(RESTAURANT) int restaurantId) {
         return super.getAll(restaurantId);
     }
 
     @PutMapping(value = "/{id}/restaurant-id/{restaurant}", consumes = APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Meal meal, @PathVariable("id") int id, @PathVariable("restaurant") int restaurantId) {
+    public void update(@RequestBody Meal meal, @PathVariable("id") int id, @PathVariable(RESTAURANT) int restaurantId) {
         super.update(meal, id, restaurantId);
     }
 
     @PostMapping(value = "/restaurant-id/{restaurant}", consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Meal> createWithLocation(@RequestBody Meal meal, @PathVariable("restaurant") int restaurantId) {
+    public ResponseEntity<Meal> createWithLocation(@RequestBody Meal meal, @PathVariable(RESTAURANT) int restaurantId) {
         Meal created = super.create(meal, restaurantId);
 
         URI uriOfNewResponse = ServletUriComponentsBuilder.fromCurrentContextPath()

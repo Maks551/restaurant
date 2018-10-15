@@ -13,6 +13,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
+import static ua.graduateproject.restaurant.util.UserUtil.MAX_SIZE_EMAIL;
+import static ua.graduateproject.restaurant.util.UserUtil.MAX_SIZE_PASSWORD;
+import static ua.graduateproject.restaurant.util.UserUtil.MIN_SIZE_PASSWORD;
+
 @Getter @Setter
 @NoArgsConstructor
 @Entity
@@ -22,12 +26,12 @@ public class User extends AbstractNamedEntity {
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
-    @Size(max = 100)
+    @Size(max = MAX_SIZE_EMAIL)
     private String email;
 
     @Column(name = "password", nullable = false)
     @NotBlank
-    @Size(min = 5, max = 100)
+    @Size(min = MIN_SIZE_PASSWORD, max = MAX_SIZE_PASSWORD)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 

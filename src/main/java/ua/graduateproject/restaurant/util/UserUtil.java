@@ -5,6 +5,9 @@ import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.to.UserTo;
 
 public class UserUtil {
+    public static final int MAX_SIZE_EMAIL = 100;
+    public static final int MIN_SIZE_PASSWORD = 5;
+    public static final int MAX_SIZE_PASSWORD = 100;
 
     public static User createNewFromTo(UserTo newUser) {
         return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPassword(), Role.ROLE_USER);
