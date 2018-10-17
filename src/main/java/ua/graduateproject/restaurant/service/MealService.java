@@ -1,7 +1,6 @@
 package ua.graduateproject.restaurant.service;
 
 import ua.graduateproject.restaurant.model.Meal;
-import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 

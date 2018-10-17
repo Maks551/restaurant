@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ua.graduateproject.restaurant.model.Vote;
 import ua.graduateproject.restaurant.service.VoteService;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -49,14 +50,14 @@ public class VoteRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Vote vote, @PathVariable("id") int id) {
+    public void update(@Valid @RequestBody Vote vote, @PathVariable("id") int id) {
         assureIdConsistent(vote, id);
         log.info("update vote {}", vote);
         service.update(vote);
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Vote> createWithLocation(@RequestBody Vote vote) {
+    public ResponseEntity<Vote> createWithLocation(@Valid @RequestBody Vote vote) {
         checkNew(vote);
         log.info("create {}", vote);
         Vote created = service.create(vote);

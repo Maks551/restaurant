@@ -15,9 +15,9 @@ import static ua.graduateproject.restaurant.web.json.JsonUtil.writeIgnoreProps;
 
 public class UserTestData {
     public static final int USER_ID = START_SEQ;
-    public static final int USER2_ID = USER_ID + 1;
-    public static final int USER3_ID = USER_ID + 2;
-    public static final int USER4_ID = USER_ID + 3;
+    static final int USER2_ID = USER_ID + 1;
+    private static final int USER3_ID = USER_ID + 2;
+    static final int USER4_ID = USER_ID + 3;
     public static final int ADMIN_ID = USER_ID + 4;
     public static final int ADMIN2_ID = USER_ID + 5;
 
