@@ -52,12 +52,6 @@ class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void updateNotFoundNotAdmin() {
-        Restaurant updated = getUpdatedByAdmin_1();
-        assertThrows(NotFoundException.class, () -> service.update(updated, ADMIN2_ID));
-    }
-
-    @Test
     void delete() {
         service.delete(RESTAURANT_ID, ADMIN_ID);
         assertMatch(service.getAll(), RESTAURANT_2, RESTAURANT_3);

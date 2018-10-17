@@ -1,7 +1,5 @@
 package ua.graduateproject.restaurant.to;
 
-import org.hibernate.validator.constraints.SafeHtml;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,13 +15,11 @@ public class UserTo extends BaseTo implements Serializable {
 
     @NotBlank
     @Size(min = 2, max = MAX_SIZE_NAME)
-    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
     @Size(max = MAX_SIZE_EMAIL)
-    @SafeHtml // https://stackoverflow.com/questions/17480809
     private String email;
 
     @Size(min = MIN_SIZE_PASSWORD, max = MAX_SIZE_PASSWORD)

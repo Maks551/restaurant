@@ -85,8 +85,8 @@ public class AdminRestControllerTest extends AbstractControllerTest {
         mockMvc.perform(put(REST_URL + USER_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(ADMIN_1))
-                .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().isOk());
+                .content(jsonWithPassword(updated, USER_1.getPassword())))
+                .andExpect(status().isNoContent());
         assertMatch(service.get(USER_ID), updated);
     }
 

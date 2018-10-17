@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ua.graduateproject.restaurant.model.Vote;
 import ua.graduateproject.restaurant.repository.VoteRepository;
-import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 

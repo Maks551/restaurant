@@ -1,12 +1,12 @@
 package ua.graduateproject.restaurant.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
+import ua.graduateproject.restaurant.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -32,18 +32,18 @@ public class Restaurant extends AbstractNamedEntity {
     @DateTimeFormat(pattern = DATE_TIME_PATTERN)
     private LocalDateTime dateTimeOfAddMenu;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    private List<Meal> menu;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotNull(groups = View.Persist.class)
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    private List<Meal> menu;
 
     public Restaurant(Restaurant r) {
         this(r.id, r.name, r.dateTimeOfAddMenu, r.address);
-        setUser(r.user);
+//        setUser(r.user);
     }
 
     public Restaurant(String name, LocalDateTime dateTimeOfAddMenu, String address){

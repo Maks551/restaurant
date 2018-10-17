@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ua.graduateproject.restaurant.model.Restaurant;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -34,12 +35,12 @@ public class RestaurantAdminRestController extends AbstractRestaurantRestControl
     }
 
     @PutMapping(value = WITH_ID, consumes = APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
+    public void update(@Valid @RequestBody Restaurant restaurant, @PathVariable("id") int id) {
         super.update(restaurant, id);
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createWithLocation(@Valid @RequestBody Restaurant restaurant) {
         Restaurant created = super.create(restaurant);
 
         URI uriOfNewResponse = ServletUriComponentsBuilder.fromCurrentContextPath()

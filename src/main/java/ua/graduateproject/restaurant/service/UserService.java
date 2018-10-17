@@ -2,7 +2,6 @@ package ua.graduateproject.restaurant.service;
 
 import ua.graduateproject.restaurant.model.User;
 import ua.graduateproject.restaurant.to.UserTo;
-import ua.graduateproject.restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 
