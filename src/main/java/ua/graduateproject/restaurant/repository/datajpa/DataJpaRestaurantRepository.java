@@ -42,7 +42,7 @@ public class DataJpaRestaurantRepository implements RestaurantRepository {
     public Restaurant save(Restaurant restaurant, int userId) {
         User user = crudUserRepo.findById(userId).orElse(null);
         if (user == null || !user.getRoles().contains(Role.ROLE_ADMIN)) {
-            throw new NotFoundException("user mast be user");
+            throw new NotFoundException("user mast be admin");
         }
         if (restaurant.getUser() != null && restaurant.getUser().getId() != userId){
             return null;

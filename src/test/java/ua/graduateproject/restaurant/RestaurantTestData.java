@@ -23,12 +23,6 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID + 2, "Restaurant 3",
             LocalDateTime.of(2018, 9, 20, 9, 30), "Kiev str. 3");
 
-//    static {
-//        RESTAURANT_1.setUser(ADMIN_1);
-//        RESTAURANT_2.setUser(ADMIN_2);
-//        RESTAURANT_3.setUser(ADMIN_2);
-//    }
-
     public static final List<Restaurant> RESTAURANT_LIST = Arrays.asList(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3);
 
     public static final String ADDRESS_R1 = "Kiev str. 1";

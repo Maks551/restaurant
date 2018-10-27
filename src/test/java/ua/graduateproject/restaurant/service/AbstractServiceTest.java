@@ -23,9 +23,6 @@ import static ua.graduateproject.restaurant.util.ValidationUtil.getRootCause;
 @ExtendWith(TimingExtension.class)
 abstract class AbstractServiceTest {
 
-    @Autowired
-    private Environment env;
-
     static {
         // needed only for java.util.logging (postgres driver)
         SLF4JBridgeHandler.install();
